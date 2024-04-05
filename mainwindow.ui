@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1150</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: white;
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>400</width>
+      <height>400</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 200px; 
+border: 0px solid black; 
+
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Downloads/21_electrodes_of_International_10-20_system_for_EEG.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_14">
+    <property name="geometry">
+     <rect>
+      <x>396</x>
+      <y>217</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E14</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_13">
+    <property name="geometry">
+     <rect>
+      <x>341</x>
+      <y>225</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E13</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_12">
+    <property name="geometry">
+     <rect>
+      <x>277</x>
+      <y>225</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E12</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_11">
+    <property name="geometry">
+     <rect>
+      <x>213</x>
+      <y>225</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E11</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_10">
+    <property name="geometry">
+     <rect>
+      <x>149</x>
+      <y>225</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E10</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_9">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>225</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E9</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_8">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>217</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E8</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_19">
+    <property name="geometry">
+     <rect>
+      <x>317</x>
+      <y>307</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E19</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_18">
+    <property name="geometry">
+     <rect>
+      <x>266</x>
+      <y>297</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E18</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_17">
+    <property name="geometry">
+     <rect>
+      <x>213</x>
+      <y>297</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E17</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_16">
+    <property name="geometry">
+     <rect>
+      <x>161</x>
+      <y>297</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E16</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_15">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>308</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E15</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_21">
+    <property name="geometry">
+     <rect>
+      <x>253</x>
+      <y>359</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E21</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_20">
+    <property name="geometry">
+     <rect>
+      <x>173</x>
+      <y>359</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E20</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_7">
+    <property name="geometry">
+     <rect>
+      <x>317</x>
+      <y>142</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E7</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_6">
+    <property name="geometry">
+     <rect>
+      <x>266</x>
+      <y>153</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E6</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_5">
+    <property name="geometry">
+     <rect>
+      <x>213</x>
+      <y>153</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E5</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_4">
+    <property name="geometry">
+     <rect>
+      <x>161</x>
+      <y>153</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E4</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_3">
+    <property name="geometry">
+     <rect>
+      <x>109</x>
+      <y>142</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E3</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_1">
+    <property name="geometry">
+     <rect>
+      <x>172</x>
+      <y>91</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E1</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="electrodeButton_2">
+    <property name="geometry">
+     <rect>
+      <x>255</x>
+      <y>91</y>
+      <width>34</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 17px;
+border: 1px solid black; 
+background-color: red; 
+color: white; 
+</string>
+    </property>
+    <property name="text">
+     <string>E2</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</normaloff>../Downloads/home/student/Downloads/elevator-buttons (2).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1150</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
