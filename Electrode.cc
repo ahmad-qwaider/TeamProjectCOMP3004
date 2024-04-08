@@ -20,3 +20,11 @@ void Electrode::addOffset(){
 void Electrode::resetOffset(){
     signalStrength -= 20;
 }
+
+void Electrode::activateElectrode(){
+    isActive = true;
+}
+
+void Electrode::deactivateElectrode(){
+    isActive = false;
+}
