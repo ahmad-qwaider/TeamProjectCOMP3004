@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Icons/battery-charging-twotone-100-svgrepo-com.svg</file>
+        <file>Icons/menu-alt-2-svgrepo-com.svg</file>
+        <file>Icons/pause-svgrepo-com.svg</file>
+        <file>Icons/play-svgrepo-com.svg</file>
+        <file>Icons/square-svgrepo-com.svg</file>
+        <file>Icons/triangle-down.png</file>
+        <file>Icons/triangle-svgrepo-com.svg</file>
+        <file>Icons/21_electrodes_of_International_10-20_system_for_EEG.svg</file>
+        <file>Icons/icons8-cable-64.png</file>
+        <file>Icons/icons8-bluetooth-24.png</file>
+    </qresource>
+</RCC>

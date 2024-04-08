@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1150</width>
-    <height>600</height>
+    <width>1688</width>
+    <height>648</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>40</y>
+      <y>120</y>
       <width>400</width>
       <height>400</height>
      </rect>
@@ -38,7 +38,7 @@ border: 0px solid black;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Downloads/21_electrodes_of_International_10-20_system_for_EEG.svg</pixmap>
+     <pixmap resource="images.qrc">:/images/Icons/21_electrodes_of_International_10-20_system_for_EEG.svg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -48,7 +48,7 @@ border: 0px solid black;
     <property name="geometry">
      <rect>
       <x>396</x>
-      <y>217</y>
+      <y>297</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -78,7 +78,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>341</x>
-      <y>225</y>
+      <y>305</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -108,7 +108,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>277</x>
-      <y>225</y>
+      <y>305</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -138,7 +138,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>213</x>
-      <y>225</y>
+      <y>305</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -168,7 +168,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>149</x>
-      <y>225</y>
+      <y>305</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -198,7 +198,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>85</x>
-      <y>225</y>
+      <y>305</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -228,7 +228,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>217</y>
+      <y>297</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -258,7 +258,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>317</x>
-      <y>307</y>
+      <y>387</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -288,7 +288,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>266</x>
-      <y>297</y>
+      <y>377</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -318,7 +318,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>213</x>
-      <y>297</y>
+      <y>377</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -348,7 +348,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>161</x>
-      <y>297</y>
+      <y>377</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -378,7 +378,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>308</y>
+      <y>388</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -408,7 +408,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>253</x>
-      <y>359</y>
+      <y>439</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -438,7 +438,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>173</x>
-      <y>359</y>
+      <y>439</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -468,7 +468,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>317</x>
-      <y>142</y>
+      <y>222</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -498,7 +498,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>266</x>
-      <y>153</y>
+      <y>233</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -528,7 +528,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>213</x>
-      <y>153</y>
+      <y>233</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -558,7 +558,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>161</x>
-      <y>153</y>
+      <y>233</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -588,7 +588,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>109</x>
-      <y>142</y>
+      <y>222</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -618,7 +618,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>172</x>
-      <y>91</y>
+      <y>171</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -648,7 +648,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>91</y>
+      <y>171</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -674,19 +674,648 @@ color: white;
      </size>
     </property>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>140</y>
+      <width>351</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(249, 249, 249);
+border: 1px solid black; 
+</string>
+    </property>
+    <widget class="QPushButton" name="powerButton">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>10</y>
+       <width>28</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 14px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../Downloads/power-button-svgrepo-com.svg</normaloff>../Downloads/power-button-svgrepo-com.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>15</x>
+       <y>10</y>
+       <width>10</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(185, 214, 252); 
+</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>10</y>
+       <width>10</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(189, 219, 180) 
+</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_4" native="true">
+     <property name="geometry">
+      <rect>
+       <x>75</x>
+       <y>10</y>
+       <width>10</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(250, 183, 183)</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="DownButton">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>160</y>
+       <width>28</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/triangle-down.png</normaloff>:/images/Icons/triangle-down.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="PauseButton">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>260</y>
+       <width>50</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border: none; 
+background-color: transparent;
+color: red;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/pause-svgrepo-com.svg</normaloff>:/images/Icons/pause-svgrepo-com.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="PlayButton">
+     <property name="geometry">
+      <rect>
+       <x>135</x>
+       <y>260</y>
+       <width>50</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border: none; background-color: transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/play-svgrepo-com.svg</normaloff>:/images/Icons/play-svgrepo-com.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="SaveButton">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>260</y>
+       <width>50</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border: none; background-color: transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/square-svgrepo-com.svg</normaloff>:/images/Icons/square-svgrepo-com.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="UpButton">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>120</y>
+       <width>28</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/triangle-svgrepo-com.svg</normaloff>:/images/Icons/triangle-svgrepo-com.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="geometry">
+      <rect>
+       <x>65</x>
+       <y>90</y>
+       <width>185</width>
+       <height>125</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: white;
+</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="MenuButton">
+     <property name="geometry">
+      <rect>
+       <x>52</x>
+       <y>50</y>
+       <width>50</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border: none; background-color: transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/menu-alt-2-svgrepo-com.svg</normaloff>:/images/Icons/menu-alt-2-svgrepo-com.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>331</y>
+       <width>23</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border: none; 
+background-color: transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="images.qrc">:/images/Icons/icons8-bluetooth-24.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>609</x>
+      <y>75</y>
+      <width>2</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black; 
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>50</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> CONTACT</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>639</x>
+      <y>95</y>
+      <width>2</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black; 
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>60</y>
+      <width>132</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TREATMENT SIGNAL</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>669</x>
+      <y>120</y>
+      <width>2</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black; 
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>90</y>
+      <width>132</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CONTACT LOST</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_5" native="true">
+    <property name="geometry">
+     <rect>
+      <x>1168</x>
+      <y>110</y>
+      <width>471</width>
+      <height>298</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black;</string>
+    </property>
+    <widget class="QTextBrowser" name="textBrowser_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>11</y>
+       <width>451</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: white;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="widget_6" native="true">
+    <property name="geometry">
+     <rect>
+      <x>1348</x>
+      <y>450</y>
+      <width>121</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black;</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_5">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>400</y>
+      <width>15</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black; 
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>473</y>
+      <width>40</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/images/Icons/icons8-cable-64.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>648</x>
+      <y>512</y>
+      <width>4</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black; 
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_6">
+    <property name="geometry">
+     <rect>
+      <x>227</x>
+      <y>573</y>
+      <width>421</width>
+      <height>4</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black; 
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_7">
+    <property name="geometry">
+     <rect>
+      <x>227</x>
+      <y>494</y>
+      <width>4</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: black; 
+</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_7" native="true">
+    <property name="geometry">
+     <rect>
+      <x>215</x>
+      <y>470</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 15px;
+background-color: black;
+border: 5px solid rgb(222, 221, 218); 
+</string>
+    </property>
+   </widget>
+   <zorder>label_5</zorder>
+   <zorder>label_2</zorder>
+   <zorder>electrodeButton_14</zorder>
+   <zorder>electrodeButton_13</zorder>
+   <zorder>electrodeButton_12</zorder>
+   <zorder>electrodeButton_11</zorder>
+   <zorder>electrodeButton_10</zorder>
+   <zorder>electrodeButton_9</zorder>
+   <zorder>electrodeButton_8</zorder>
+   <zorder>electrodeButton_19</zorder>
+   <zorder>electrodeButton_18</zorder>
+   <zorder>electrodeButton_17</zorder>
+   <zorder>electrodeButton_16</zorder>
+   <zorder>electrodeButton_15</zorder>
+   <zorder>electrodeButton_21</zorder>
+   <zorder>electrodeButton_20</zorder>
+   <zorder>electrodeButton_7</zorder>
+   <zorder>electrodeButton_6</zorder>
+   <zorder>electrodeButton_5</zorder>
+   <zorder>electrodeButton_4</zorder>
+   <zorder>electrodeButton_3</zorder>
+   <zorder>electrodeButton_1</zorder>
+   <zorder>electrodeButton_2</zorder>
+   <zorder>widget</zorder>
+   <zorder>line</zorder>
+   <zorder>label</zorder>
+   <zorder>line_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>line_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>widget_5</zorder>
+   <zorder>widget_6</zorder>
+   <zorder>line_5</zorder>
+   <zorder>line_4</zorder>
+   <zorder>line_6</zorder>
+   <zorder>line_7</zorder>
+   <zorder>widget_7</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1150</width>
+     <width>1688</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>
