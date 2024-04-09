@@ -1,11 +1,14 @@
 #include "Electrode.h"
 
-Electrode::Electrode(int pos, string& name, int freq)
+int Electrode::nextPosition = 1;
+
+Electrode::Electrode(const string& name, int freq)
 {
-    position = pos;
     waveType = name;
     signalStrength = freq;
+    position = nextPosition++;
 }
+
 Electrode::~Electrode() {}
 
 int Electrode::emitTherapy(){
@@ -22,7 +25,11 @@ void Electrode::resetOffset(){
 }
 
 void Electrode::setIsActive(bool status){
-    isActive = false;
+    isActive  = status;
+}
+
+void Electrode::switchIsActive(){
+    isActive  = !isActive;
 }
 
 bool Electrode::getIsActive(){

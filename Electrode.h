@@ -21,12 +21,14 @@ using namespace std;
 class Electrode 
 {
 public:
-    Electrode(int position, string& waveType, int signalStrength);
+    Electrode(const string& waveType, int signalStrength);
     ~Electrode();
+    static int nextPosition;
     int emitTherapy();
     void addOffset();
     void resetOffset();
     void setIsActive(bool status);
+    void switchIsActive();
     bool getIsActive();
 private:
     bool isActive = false;
