@@ -1,4 +1,4 @@
-#include "electrode.h"
+#include "Electrode.h"
 
 Electrode::Electrode(int pos, string& name, int freq)
 {
