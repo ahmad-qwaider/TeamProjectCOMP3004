@@ -62,7 +62,6 @@ void MainWindow::connectAllElectrodes(){
 
 void MainWindow::on_powerButton_clicked(){
   isDeviceOn = !isDeviceOn;
-  toggleAllElectrodes();
   if(isDeviceOn){
   ui->stackedFrames->setCurrentIndex(1); // menu screen
   }
@@ -97,6 +96,8 @@ void MainWindow::on_newSessionButton_clicked(){
     countdownTimer->start(1000);
     ui->progressBar->setMaximum(countdownTime);
     ui->progressBar->setValue(0);
+    toggleAllElectrodes();
+
 }
 
 
