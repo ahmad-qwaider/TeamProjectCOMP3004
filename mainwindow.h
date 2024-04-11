@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QTimer>
 #include "Electrode.h"
 #include <iostream>
 
@@ -21,12 +22,14 @@ public:
 private slots:
     void on_powerButton_clicked();
     void onMultipleButtonsClicked();
-
-
+    void on_newSessionButton_clicked();
+    void updateCountdown();
 
 private:
     Ui::MainWindow *ui;
+    QTimer *countdownTimer;
     bool isDeviceOn;
+    int countdownTime = 180; // Time in seconds (3 minutes)
     std::vector<Electrode> electrodes;
     void toggleAllElectrodes();
     void connectAllElectrodes();

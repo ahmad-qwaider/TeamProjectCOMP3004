@@ -726,44 +726,6 @@ border: 1px solid black;
       <string notr="true">background-color: rgb(250, 183, 183)</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="DownButton">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>160</y>
-       <width>28</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/images/Icons/triangle-down.png</normaloff>:/images/Icons/triangle-down.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <property name="default">
-      <bool>false</bool>
-     </property>
-    </widget>
     <widget class="QPushButton" name="PauseButton">
      <property name="geometry">
       <rect>
@@ -810,7 +772,7 @@ color: red;</string>
     <widget class="QPushButton" name="PlayButton">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>150</x>
        <y>260</y>
        <width>50</width>
        <height>50</height>
@@ -848,7 +810,7 @@ color: red;</string>
     <widget class="QPushButton" name="SaveButton">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>210</x>
        <y>260</y>
        <width>50</width>
        <height>50</height>
@@ -886,62 +848,10 @@ color: red;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="UpButton">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>120</y>
-       <width>28</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/images/Icons/triangle-svgrepo-com.svg</normaloff>:/images/Icons/triangle-svgrepo-com.svg</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>15</width>
-       <height>15</height>
-      </size>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <property name="default">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QTextBrowser" name="textBrowser">
-     <property name="geometry">
-      <rect>
-       <x>65</x>
-       <y>90</y>
-       <width>185</width>
-       <height>125</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: white;
-</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="MenuButton">
      <property name="geometry">
       <rect>
-       <x>52</x>
+       <x>70</x>
        <y>50</y>
        <width>50</width>
        <height>50</height>
@@ -1004,6 +914,127 @@ background-color: transparent;</string>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
+    </widget>
+    <widget class="QStackedWidget" name="stackedFrames">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>90</y>
+       <width>185</width>
+       <height>125</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: white;
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="EmptyScreen"/>
+     <widget class="QWidget" name="menuScreen">
+      <widget class="QPushButton" name="newSessionButton">
+       <property name="geometry">
+        <rect>
+         <x>15</x>
+         <y>15</y>
+         <width>155</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>NEW SESSION</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="sessionLogButton">
+       <property name="geometry">
+        <rect>
+         <x>15</x>
+         <y>50</y>
+         <width>155</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SESSION LOG</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="TimeAndDateButton">
+       <property name="geometry">
+        <rect>
+         <x>15</x>
+         <y>85</y>
+         <width>155</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>TIME AND DATE</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="sessionScreen">
+      <widget class="QProgressBar" name="progressBar">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>90</y>
+         <width>145</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>145</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
+       <property name="textDirection">
+        <enum>QProgressBar::TopToBottom</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="timeLabel">
+       <property name="geometry">
+        <rect>
+         <x>22</x>
+         <y>20</y>
+         <width>141</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>32</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string>3:00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <widget class="Line" name="line">

@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    Electrode.cpp
+    Electrode.cpp \
+    PC.cpp
 
 HEADERS += \
     mainwindow.h \
-    Electrode.h
+    Electrode.h \
+    PC.h
 
 FORMS += \
     mainwindow.ui

@@ -11,7 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
     for (int i = 1; i < 22; ++i) {
     electrodes.emplace_back(Electrode("Beta", 0));
     }
+    countdownTimer = new QTimer(this);
+    connect(countdownTimer, &QTimer::timeout, this, &MainWindow::updateCountdown);
 
+    ui->stackedFrames->setCurrentIndex(0);  // set device to an empty screen when device off
 }
 
 MainWindow::~MainWindow()
@@ -60,6 +63,12 @@ void MainWindow::connectAllElectrodes(){
 void MainWindow::on_powerButton_clicked(){
   isDeviceOn = !isDeviceOn;
   toggleAllElectrodes();
+  if(isDeviceOn){
+  ui->stackedFrames->setCurrentIndex(1); // menu screen
+  }
+  else{
+  ui->stackedFrames->setCurrentIndex(0); // empty screen
+ }
 }
 
 
@@ -82,3 +91,36 @@ void MainWindow::deactivateElectrode(QPushButton *button){
                         "color: white; "
                         "}");
 }
+
+void MainWindow::on_newSessionButton_clicked(){
+    ui->stackedFrames->setCurrentIndex(2);
+    countdownTimer->start(1000);
+    ui->progressBar->setMaximum(countdownTime);
+    ui->progressBar->setValue(0);
+}
+
+
+
+void MainWindow::updateCountdown()
+{
+    countdownTime--;
+
+    ui->progressBar->setValue(180 - countdownTime);
+
+    // Convert seconds to minutes and seconds
+    int minutes = countdownTime / 60;
+    int seconds = countdownTime % 60;
+
+    // Example: Update a label with the remaining time
+    // Ensure you have a QLabel named timeLabel in your UI
+    ui->timeLabel->setText(QString("%1:%2").arg(minutes, 2, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')));
+
+    if (countdownTime <= 0) {
+        countdownTimer->stop(); // Stop the timer
+        countdownTime = 180;
+        ui->progressBar->reset(); // To reset the progress bar
+        // Optionally, perform any action after countdown ends
+        std::cout<<"jafllfa"<<endl;
+    }
+}
+
