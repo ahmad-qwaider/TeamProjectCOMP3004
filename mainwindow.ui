@@ -1088,6 +1088,22 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
       </widget>
      </widget>
     </widget>
+    <widget class="QLabel" name="Battery">
+     <property name="geometry">
+      <rect>
+       <x>303</x>
+       <y>329</y>
+       <width>43</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">

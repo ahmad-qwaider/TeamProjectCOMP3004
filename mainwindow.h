@@ -26,17 +26,21 @@ private slots:
     void on_newSessionButton_clicked();
     void updateCountdown();
     void on_TimeAndDateButton_clicked();
-
-
+    void updateBatteryCapacity();
     void on_EnterTimeButton_clicked();
+    void on_MenuButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     QTimer *countdownTimer;
+    QTimer *batteryTimer;
     bool isDeviceOn;
     int countdownTime = 180; // Time in seconds (3 minutes)
     int contactLossTracker = 0; // Tracks the number of contact lost electrodes
-    QDateTime dateTimeHolder; //holds the date and time entered by the user
+    int totalBatteryCapacity = 1500;
+    int batteryPercentage = 100;
+    int batteryCapacityTracker = totalBatteryCapacity;
+    QDateTime dateTimeHolder; //holds the date and time entered by the use
     std::vector<Electrode> electrodes;
     void toggleAllElectrodes();
     void connectAllElectrodes();
@@ -45,6 +49,5 @@ private:
     void toggleRedLight(bool turnON);
     void toggleBlueLight(bool turnON);
     void toggleGreenLight(bool turnON);
-
 };
 #endif // MAINWINDOW_H

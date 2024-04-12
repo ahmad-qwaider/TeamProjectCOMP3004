@@ -12,7 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     electrodes.emplace_back(Electrode("Beta", 0));
     }
     countdownTimer = new QTimer(this);
+    batteryTimer = new QTimer(this);
     connect(countdownTimer, &QTimer::timeout, this, &MainWindow::updateCountdown);
+    connect(batteryTimer, &QTimer::timeout, this, &MainWindow::updateBatteryCapacity);
 
     ui->stackedFrames->setCurrentIndex(0);  // set device to an empty screen when device off
 }
@@ -77,12 +79,16 @@ void MainWindow::on_powerButton_clicked(){
   isDeviceOn = !isDeviceOn;
   if(isDeviceOn){
   ui->stackedFrames->setCurrentIndex(1); // menu screen
+  batteryTimer->start(1000);
+  ui->Battery->setText(QString::number(batteryPercentage) + "%");
   }
   else{
   ui->stackedFrames->setCurrentIndex(0); // empty screen
+  ui->Battery->setText("");
   toggleBlueLight(false);
   toggleGreenLight(false);
   toggleRedLight(false);
+  batteryTimer->stop();
  }
 }
 
@@ -157,7 +163,6 @@ void MainWindow::toggleBlueLight(bool turnON){
     }
 }
 
-
 void MainWindow::toggleGreenLight(bool turnON){
     if(turnON && isDeviceOn && contactLossTracker  == 0){
         ui->greenLight->setStyleSheet("background-color: green");
@@ -180,3 +185,20 @@ void MainWindow::on_EnterTimeButton_clicked()
  //   std::cout<<dateTimeHolder.toString().toStdString()<<endl;
 }
 
+
+void MainWindow::on_MenuButton_clicked()
+{
+  ui->stackedFrames->setCurrentIndex(1);
+}
+
+
+void MainWindow::updateBatteryCapacity()
+{
+    batteryCapacityTracker--;
+    batteryPercentage = (batteryCapacityTracker * 100) / totalBatteryCapacity;
+    ui->Battery->setText(QString::number(batteryPercentage) + "%");
+
+    if (batteryCapacityTracker <= 0) {
+        batteryTimer->stop(); // Stop the timer
+    }
+}
