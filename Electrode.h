@@ -21,20 +21,19 @@ using namespace std;
 class Electrode 
 {
 public:
-    Electrode(const string& waveType, int signalStrength);
+    Electrode();
     ~Electrode();
     static int nextPosition;
-    int emitTherapy();
-    void addOffset();
-    void resetOffset();
+    QVector<int> emitSignal() const;
+    void treatmentAffect();
     void setIsActive(bool status);
-    void switchIsActive();
     bool getIsActive();
+    int getPosition();
+    void switchIsActive();
 private:
     bool isActive = false;
     int position;
-    string waveType;
-    int signalStrength;
+    int f1,f2,f3,a1,a2,a3;
 };
 
 #endif // ELECTRODE_H
