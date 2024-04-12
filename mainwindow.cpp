@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     connectAllElectrodes();
     for (int i = 1; i < 22; ++i) {
-    electrodes.emplace_back(Electrode("Beta", 0));
+    electrodes.emplace_back(Electrode());
     }
     countdownTimer = new QTimer(this);
     batteryTimer = new QTimer(this);
