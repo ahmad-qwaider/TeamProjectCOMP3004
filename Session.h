@@ -31,7 +31,6 @@ class Session : public QObject
         int getSessionLength();
         int getRound();
         bool isActive(); // true if state is TREATING or ANALYZING
-        SessionState getState();
         SessionData generateSessionData();
 
 
