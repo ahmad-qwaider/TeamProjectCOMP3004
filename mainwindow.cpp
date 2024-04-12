@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , isDeviceOn(false)
+    , isSessionRunning(false)
 {
     ui->setupUi(this);
     connectAllElectrodes();
@@ -60,7 +61,7 @@ void MainWindow::connectAllElectrodes(){
      toggleRedLight(false);
 
       if(contactLossTracker ==  0){
-         countdownTimer->start();
+         countdownTimer->start(1000);
          toggleBlueLight(true);
       }
 
@@ -79,8 +80,12 @@ void MainWindow::on_powerButton_clicked(){
   isDeviceOn = !isDeviceOn;
   if(isDeviceOn){
   ui->stackedFrames->setCurrentIndex(1); // menu screen
-  batteryTimer->start(1000);
+  batteryTimer->start(batteryTime);
   ui->Battery->setText(QString::number(batteryPercentage) + "%");
+  if(isSessionRunning){
+      countdownTimer->start(1000);
+  }
+
   }
   else{
   ui->stackedFrames->setCurrentIndex(0); // empty screen
@@ -89,6 +94,7 @@ void MainWindow::on_powerButton_clicked(){
   toggleGreenLight(false);
   toggleRedLight(false);
   batteryTimer->stop();
+  countdownTimer->stop();
  }
 }
 
@@ -115,7 +121,9 @@ void MainWindow::deactivateElectrode(QPushButton *button){
 
 void MainWindow::on_newSessionButton_clicked(){
     ui->stackedFrames->setCurrentIndex(2);
+    isSessionRunning = true;
     countdownTimer->start(1000);
+    batteryTimer->start(batteryTime/3);
     ui->progressBar->setMaximum(countdownTime);
     ui->progressBar->setValue(0);
     toggleAllElectrodes();
@@ -128,7 +136,8 @@ void MainWindow::updateCountdown()
 {
     countdownTime--;
 
-    ui->progressBar->setValue(180 - countdownTime);
+    ui->progressBar->setValue(sessionDuration - countdownTime);
+    std::cout<<countdownTime<<endl;
 
     // Convert seconds to minutes and seconds
     int minutes = countdownTime / 60;
@@ -139,9 +148,9 @@ void MainWindow::updateCountdown()
 
     if (countdownTime <= 0) {
         countdownTimer->stop(); // Stop the timer
-        countdownTime = 180;
+        countdownTime = sessionDuration;
+        isSessionRunning = false;
         ui->progressBar->reset(); // To reset the progress bar
-        std::cout<<"jafllfa"<<endl;
     }
 }
 
@@ -202,3 +211,16 @@ void MainWindow::updateBatteryCapacity()
         batteryTimer->stop(); // Stop the timer
     }
 }
+
+void MainWindow::on_PlayButton_clicked()
+{
+    countdownTimer->start(1000);
+
+}
+
+
+void MainWindow::on_PauseButton_clicked()
+{
+    countdownTimer->stop();
+}
+

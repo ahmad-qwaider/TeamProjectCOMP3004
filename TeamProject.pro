@@ -12,12 +12,13 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     Electrode.cpp \
-    PC.cpp
+    PC.cpp \
 
 HEADERS += \
     mainwindow.h \
     Electrode.h \
-    PC.h
+    PC.h \
+    Session.h
 
 FORMS += \
     mainwindow.ui

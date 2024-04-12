@@ -13,6 +13,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -30,15 +32,22 @@ private slots:
     void on_EnterTimeButton_clicked();
     void on_MenuButton_clicked();
 
+    void on_PlayButton_clicked();
+
+    void on_PauseButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *countdownTimer;
     QTimer *batteryTimer;
     bool isDeviceOn;
-    int countdownTime = 180; // Time in seconds (3 minutes)
+    bool isSessionRunning;
+    int sessionDuration = 180;
+    int countdownTime = sessionDuration; // Time in seconds (3 minutes)
     int contactLossTracker = 0; // Tracks the number of contact lost electrodes
     int totalBatteryCapacity = 1500;
     int batteryPercentage = 100;
+    int batteryTime = 1000;
     int batteryCapacityTracker = totalBatteryCapacity;
     QDateTime dateTimeHolder; //holds the date and time entered by the use
     std::vector<Electrode> electrodes;
