@@ -113,11 +113,11 @@ void Session::treatElectrode(QVector<Electrode> &electrodes){
                 electrode.treatmentAffect(); // make the treatment affect apparent so baseline changes
                 electrode.setIsActive(false); // turn location off
                 visitNextSite();
-                if(currentElectrode == 22){ // reached end of pulsing phase since 21 technically out of index. start at 0.
+                if(currentElectrode == 22){ // reached end of pulsing phase since 22 technically out of index. start at 0.
                     visitInitialSite();
                     currentRoundFdLog.clear();
-                    state = SessionState::ANALYZING;
                     electrodeTimer->stop();
+                    state = SessionState::ANALYZING;
                     baselineTimer->setInterval(therapyTime/21);
                     baselineTimer->start();
                 }
@@ -150,6 +150,7 @@ void Session::calcBaseline(QVector<Electrode> &electrodes){
                     endSession();
                 }else{
                     baselineTimer->stop();
+                    state = SessionState::TREATING;
                     baselineTimer->setInterval(analyzeTime/21);
                     electrodeTimer->start(therapyTime/21);
                 }
