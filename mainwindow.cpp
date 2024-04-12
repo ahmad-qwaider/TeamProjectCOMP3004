@@ -28,6 +28,7 @@ void MainWindow::toggleAllElectrodes(){
         QString buttonName = QString("electrodeButton_%1").arg(i);
         QPushButton *button = MainWindow::findChild<QPushButton *>(buttonName);
         int electrodeIndex = button->text().remove(0,1).toInt() - 1;
+        toggleBlueLight(true);
 
         if(button){
            activateElectrode(button);
@@ -53,9 +54,21 @@ void MainWindow::connectAllElectrodes(){
      bool isElectrodeActive = electrodes[electrodeIndex].getIsActive();
      if(isElectrodeActive){
      activateElectrode(button);
+     contactLossTracker--;
+     toggleRedLight(false);
+
+      if(contactLossTracker ==  0){
+         countdownTimer->start();
+         toggleBlueLight(true);
+      }
+
     }
      else{
       deactivateElectrode(button);
+      contactLossTracker++;
+      countdownTimer->stop();
+      toggleRedLight(true);
+      toggleBlueLight(false);
      }
  }
 
@@ -67,6 +80,9 @@ void MainWindow::on_powerButton_clicked(){
   }
   else{
   ui->stackedFrames->setCurrentIndex(0); // empty screen
+  toggleBlueLight(false);
+  toggleGreenLight(false);
+  toggleRedLight(false);
  }
 }
 
@@ -112,16 +128,55 @@ void MainWindow::updateCountdown()
     int minutes = countdownTime / 60;
     int seconds = countdownTime % 60;
 
-    // Example: Update a label with the remaining time
-    // Ensure you have a QLabel named timeLabel in your UI
+
     ui->timeLabel->setText(QString("%1:%2").arg(minutes, 2, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')));
 
     if (countdownTime <= 0) {
         countdownTimer->stop(); // Stop the timer
         countdownTime = 180;
         ui->progressBar->reset(); // To reset the progress bar
-        // Optionally, perform any action after countdown ends
         std::cout<<"jafllfa"<<endl;
     }
+}
+
+void MainWindow::toggleRedLight(bool turnON){
+    if(turnON && isDeviceOn){
+        ui->redLight->setStyleSheet("background-color: rgb(255, 40, 40)");
+   }
+    else if(contactLossTracker  == 0 || !isDeviceOn){
+        ui->redLight->setStyleSheet("background-color: rgb(250, 230, 230)");
+    }
+}
+
+void MainWindow::toggleBlueLight(bool turnON){
+    if(turnON && isDeviceOn && contactLossTracker  == 0){
+        ui->blueLight->setStyleSheet("background-color: rgb(31, 188, 255)");
+   }
+    else{
+        ui->blueLight->setStyleSheet("background-color: rgb(220, 249, 255)");
+    }
+}
+
+
+void MainWindow::toggleGreenLight(bool turnON){
+    if(turnON && isDeviceOn && contactLossTracker  == 0){
+        ui->greenLight->setStyleSheet("background-color: green");
+   }
+    else{
+        ui->greenLight->setStyleSheet("background-color: rgb(245, 249, 236)");
+    }
+}
+
+void MainWindow::on_TimeAndDateButton_clicked()
+{
+    ui->stackedFrames->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_EnterTimeButton_clicked()
+{
+    ui->stackedFrames->setCurrentIndex(1);
+    dateTimeHolder = ui->dateTimeEdit->dateTime();
+ //   std::cout<<dateTimeHolder.toString().toStdString()<<endl;
 }
 
