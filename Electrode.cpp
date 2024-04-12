@@ -2,26 +2,36 @@
 
 int Electrode::nextPosition = 1;
 
-Electrode::Electrode(const string& name, int freq)
+Electrode::Electrode()
 {
-    waveType = name;
-    signalStrength = freq;
     position = nextPosition++;
+    QRandomGenerator generator;
+    f1 = generator.bounded(1, 10);
+    f2 = generator.bounded(1, 10);
+    f3 = generator.bounded(1, 10);
+    a1 = generator.bounded(1, 5);
+    a2 = generator.bounded(1, 5);
+    a3 = generator.bounded(1, 5);
 }
 
 Electrode::~Electrode() {}
 
-int Electrode::emitTherapy(){
-    cout << "electrode at position " << position << " emits " << waveType << " wave of fequency " << signalStrength << " Hz." << endl;
-    return signalStrength;
+QVector<int> Electrode::emitSignal() const{
+    cout << "electrode at position " << position << " emits "<< f1 << f2 << f3 << endl;
+    QVector<int> waveData;
+    waveData.append(f1);
+    waveData.append(f2);
+    waveData.append(f3);
+    waveData.append(a1);
+    waveData.append(a2);
+    waveData.append(a3);
+    return waveData;
 }
 
-void Electrode::addOffset(){
-    signalStrength += 5;
-}
-
-void Electrode::resetOffset(){
-    signalStrength -= 20;
+void Electrode::treatmentAffect(){
+    f1 += 1;
+    f2 += 1;
+    f2 += 1;
 }
 
 void Electrode::setIsActive(bool status){
@@ -34,4 +44,8 @@ void Electrode::switchIsActive(){
 
 bool Electrode::getIsActive(){
     return isActive;
+}
+
+int Electrode::getPosition(){
+    return position;
 }
