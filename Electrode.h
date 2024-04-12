@@ -2,6 +2,8 @@
 #define ELECTRODE_H
 #include <string>
 #include <iostream>
+#include <QRandomGenerator>
+#include <QVector>
 using namespace std;
 /* Purpose of Class: To act as electrode object
  * Data Members:
