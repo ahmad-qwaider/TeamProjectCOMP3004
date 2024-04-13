@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,12 +13,14 @@ SOURCES += \
     mainwindow.cpp \
     Electrode.cpp \
     PC.cpp \
+    Session.cpp
 
 HEADERS += \
     mainwindow.h \
     Electrode.h \
     PC.h \
-    Session.h
+    Session.h \
+    SessionData.h
 
 FORMS += \
     mainwindow.ui

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1688</width>
-    <height>648</height>
+    <height>754</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
     <property name="geometry">
      <rect>
       <x>396</x>
-      <y>297</y>
+      <y>367</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -52,7 +52,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>341</x>
-      <y>305</y>
+      <y>375</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -82,7 +82,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>277</x>
-      <y>305</y>
+      <y>375</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -112,7 +112,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>213</x>
-      <y>305</y>
+      <y>375</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -142,7 +142,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>149</x>
-      <y>305</y>
+      <y>375</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -172,7 +172,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>85</x>
-      <y>305</y>
+      <y>375</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -202,7 +202,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>297</y>
+      <y>367</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -232,7 +232,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>317</x>
-      <y>387</y>
+      <y>457</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -262,7 +262,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>266</x>
-      <y>377</y>
+      <y>447</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -292,7 +292,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>213</x>
-      <y>377</y>
+      <y>447</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -322,7 +322,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>161</x>
-      <y>377</y>
+      <y>447</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -352,7 +352,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>388</y>
+      <y>458</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -382,7 +382,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>253</x>
-      <y>439</y>
+      <y>509</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -412,7 +412,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>173</x>
-      <y>439</y>
+      <y>509</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -442,7 +442,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>317</x>
-      <y>222</y>
+      <y>292</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -472,7 +472,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>266</x>
-      <y>233</y>
+      <y>303</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -502,7 +502,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>213</x>
-      <y>233</y>
+      <y>303</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -532,7 +532,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>161</x>
-      <y>233</y>
+      <y>303</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -562,7 +562,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>109</x>
-      <y>222</y>
+      <y>292</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -592,7 +592,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>172</x>
-      <y>171</y>
+      <y>241</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -622,7 +622,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>171</y>
+      <y>241</y>
       <width>34</width>
       <height>34</height>
      </rect>
@@ -652,7 +652,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>590</x>
-      <y>140</y>
+      <y>208</y>
       <width>351</width>
       <height>351</height>
      </rect>
@@ -851,10 +851,10 @@ color: red;</string>
     <widget class="QPushButton" name="MenuButton">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>50</y>
-       <width>50</width>
-       <height>50</height>
+       <x>78</x>
+       <y>60</y>
+       <width>34</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="autoFillBackground">
@@ -932,7 +932,7 @@ background-color: transparent;</string>
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="EmptyScreen"/>
      <widget class="QWidget" name="menuScreen">
@@ -1035,6 +1035,28 @@ background-color: transparent;</string>
        </property>
       </widget>
      </widget>
+     <widget class="QWidget" name="SessionLogScreen">
+      <widget class="QTextBrowser" name="SessionLogConsole">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>183</width>
+         <height>123</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: white;
+</string>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="TimeAndDateScreen">
       <widget class="QDateTimeEdit" name="dateTimeEdit">
        <property name="geometry">
@@ -1104,12 +1126,53 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="UploadToPCButton">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>10</y>
+       <width>28</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border: none; background-color: transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/computer-upload.svg</normaloff>:/images/Icons/computer-upload.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
       <x>609</x>
-      <y>75</y>
+      <y>143</y>
       <width>2</width>
       <height>65</height>
      </rect>
@@ -1126,7 +1189,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>50</y>
+      <y>118</y>
       <width>71</width>
       <height>17</height>
      </rect>
@@ -1139,7 +1202,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>639</x>
-      <y>95</y>
+      <y>163</y>
       <width>2</width>
       <height>46</height>
      </rect>
@@ -1156,7 +1219,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>620</x>
-      <y>60</y>
+      <y>128</y>
       <width>132</width>
       <height>17</height>
      </rect>
@@ -1169,7 +1232,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>669</x>
-      <y>120</y>
+      <y>188</y>
       <width>2</width>
       <height>21</height>
      </rect>
@@ -1186,7 +1249,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>90</y>
+      <y>158</y>
       <width>132</width>
       <height>17</height>
      </rect>
@@ -1199,7 +1262,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>1168</x>
-      <y>110</y>
+      <y>180</y>
       <width>471</width>
       <height>298</height>
      </rect>
@@ -1207,7 +1270,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="styleSheet">
      <string notr="true">background-color: black;</string>
     </property>
-    <widget class="QTextBrowser" name="textBrowser_2">
+    <widget class="QTextBrowser" name="PCLogConsole">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1216,8 +1279,15 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
        <height>261</height>
       </rect>
      </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: white;</string>
+      <string notr="true">background-color: white;
+</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
     </widget>
    </widget>
@@ -1225,7 +1295,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>1348</x>
-      <y>450</y>
+      <y>520</y>
       <width>121</width>
       <height>81</height>
      </rect>
@@ -1238,7 +1308,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>1400</x>
-      <y>400</y>
+      <y>470</y>
       <width>15</width>
       <height>65</height>
      </rect>
@@ -1255,7 +1325,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>473</y>
+      <y>541</y>
       <width>40</width>
       <height>41</height>
      </rect>
@@ -1274,7 +1344,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>648</x>
-      <y>512</y>
+      <y>580</y>
       <width>4</width>
       <height>65</height>
      </rect>
@@ -1291,7 +1361,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>227</x>
-      <y>573</y>
+      <y>641</y>
       <width>421</width>
       <height>4</height>
      </rect>
@@ -1308,7 +1378,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>227</x>
-      <y>494</y>
+      <y>564</y>
       <width>4</width>
       <height>81</height>
      </rect>
@@ -1325,7 +1395,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="geometry">
      <rect>
       <x>215</x>
-      <y>470</y>
+      <y>540</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -1341,7 +1411,7 @@ border: 5px solid rgb(222, 221, 218);
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>120</y>
+      <y>190</y>
       <width>400</width>
       <height>400</height>
      </rect>
@@ -1362,6 +1432,17 @@ border: 0px solid black;
     <property name="scaledContents">
      <bool>true</bool>
     </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>321</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="graphLayout"/>
    </widget>
    <zorder>label_2</zorder>
    <zorder>label_5</zorder>
@@ -1400,6 +1481,7 @@ border: 0px solid black;
    <zorder>line_6</zorder>
    <zorder>line_7</zorder>
    <zorder>widget_7</zorder>
+   <zorder>verticalLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

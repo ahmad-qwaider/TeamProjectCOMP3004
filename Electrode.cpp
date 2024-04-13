@@ -16,6 +16,23 @@ Electrode::Electrode()
 
 Electrode::~Electrode() {}
 
+
+QVector<double> Electrode::getWaveData(int durationInSeconds, int sampleRate) const {
+//    cout << "electrode at position " << position << " emits "<< f1 << f2 << f3 << endl;
+    QVector<double> waveData(durationInSeconds * sampleRate);
+    double step = 1.0 / sampleRate;
+    double x = 0.0;
+
+    for (int i = 0; i < waveData.size(); ++i) {
+        // Combining three sinusoidal waveforms
+        waveData[i] = a1 * sin(2 * M_PI * f1 * x) +
+                      a2 * sin(2 * M_PI * f2 * x) +
+                      a3 * sin(2 * M_PI * f3 * x);
+        x += step;
+    }
+    return waveData;
+}
+
 QVector<int> Electrode::emitSignal() const{
     cout << "electrode at position " << position << " emits "<< f1 << f2 << f3 << endl;
     QVector<int> waveData;

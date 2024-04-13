@@ -8,15 +8,21 @@ MainWindow::MainWindow(QWidget *parent)
     , isSessionRunning(false)
 {
     ui->setupUi(this);
+    QChart *chart = new QChart();
+    chartView = new QChartView(chart, this);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    ui->graphLayout->addWidget(chartView);
     connectAllElectrodes();
-    for (int i = 1; i < 22; ++i) {
+    for (int i = 0; i < 21; ++i) {
     electrodes.emplace_back(Electrode());
     }
     countdownTimer = new QTimer(this);
     batteryTimer = new QTimer(this);
+    displayTimer = new QTimer(this);
     connect(countdownTimer, &QTimer::timeout, this, &MainWindow::updateCountdown);
     connect(batteryTimer, &QTimer::timeout, this, &MainWindow::updateBatteryCapacity);
 
+    dateTimeHolder = ui->dateTimeEdit->dateTime(); // set in the default value
     ui->stackedFrames->setCurrentIndex(0);  // set device to an empty screen when device off
 }
 
@@ -24,6 +30,34 @@ MainWindow::~MainWindow()
 {
   delete ui;
 }
+
+void MainWindow::startWaveformDisplay() {
+    connect(displayTimer, &QTimer::timeout, this, [this]() {
+        static int electrodeIndex = 0;  // Example to cycle through electrodes
+        displayWaveform(electrodeIndex);
+        electrodeIndex = (electrodeIndex + 1) % electrodes.size();
+    });
+    displayTimer->start(1000);  // Update the waveform display every 500 ms
+}
+
+
+void MainWindow::displayWaveform(int electrodeIndex) {
+    if (electrodeIndex < 0 || electrodeIndex >= electrodes.size()) return;
+    Electrode &electrode = electrodes[electrodeIndex];
+
+    QVector<double> waveform = electrode.getWaveData(1, 256);
+
+    QLineSeries *series = new QLineSeries();
+    for (int i = 0; i < waveform.size(); ++i) {
+        series->append(i / 256.0, waveform[i]);
+    }
+
+    QChart *chart = chartView->chart();
+    chart->removeAllSeries();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+}
+
 
 
 void MainWindow::toggleAllElectrodes(){
@@ -79,22 +113,22 @@ void MainWindow::connectAllElectrodes(){
 void MainWindow::on_powerButton_clicked(){
   isDeviceOn = !isDeviceOn;
   if(isDeviceOn){
-  ui->stackedFrames->setCurrentIndex(1); // menu screen
-  batteryTimer->start(batteryTime);
-  ui->Battery->setText(QString::number(batteryPercentage) + "%");
-  if(isSessionRunning){
+   ui->stackedFrames->setCurrentIndex(1); // menu screen
+   batteryTimer->start(batteryTime);
+   ui->Battery->setText(QString::number(batteryPercentage) + "%");
+   if(isSessionRunning){
       countdownTimer->start(1000);
   }
 
   }
   else{
-  ui->stackedFrames->setCurrentIndex(0); // empty screen
-  ui->Battery->setText("");
-  toggleBlueLight(false);
-  toggleGreenLight(false);
-  toggleRedLight(false);
-  batteryTimer->stop();
-  countdownTimer->stop();
+   ui->stackedFrames->setCurrentIndex(0); // empty screen
+   ui->Battery->setText("");
+   toggleBlueLight(false);
+   toggleGreenLight(false);
+   toggleRedLight(false);
+   batteryTimer->stop();
+   countdownTimer->stop();
  }
 }
 
@@ -127,6 +161,7 @@ void MainWindow::on_newSessionButton_clicked(){
     ui->progressBar->setMaximum(countdownTime);
     ui->progressBar->setValue(0);
     toggleAllElectrodes();
+//    startWaveformDisplay();
 
 }
 
@@ -150,6 +185,8 @@ void MainWindow::updateCountdown()
         countdownTimer->stop(); // Stop the timer
         countdownTime = sessionDuration;
         isSessionRunning = false;
+        sessionsData.emplace_back(dateTimeHolder, 100, 200);
+        appendToSessionLogConsole(); // append the new sesssion data to the session log console
         ui->progressBar->reset(); // To reset the progress bar
     }
 }
@@ -183,7 +220,7 @@ void MainWindow::toggleGreenLight(bool turnON){
 
 void MainWindow::on_TimeAndDateButton_clicked()
 {
-    ui->stackedFrames->setCurrentIndex(3);
+    ui->stackedFrames->setCurrentIndex(4);
 }
 
 
@@ -222,5 +259,26 @@ void MainWindow::on_PlayButton_clicked()
 void MainWindow::on_PauseButton_clicked()
 {
     countdownTimer->stop();
+}
+
+
+void MainWindow::on_sessionLogButton_clicked()
+{
+    ui->stackedFrames->setCurrentIndex(3);
+}
+
+void MainWindow::appendToSessionLogConsole(){
+  ui->SessionLogConsole->append(QString("Date and Time: %1\n")
+                                .arg(dateTimeHolder.toString("yyyy-MM-dd hh:mm:ss")));
+}
+
+
+void MainWindow::on_UploadToPCButton_clicked()
+{
+    ui->PCLogConsole->clear();
+
+      for (const auto& session : sessionsData) {
+          ui->PCLogConsole->append(session.toString() + "\n");
+      }
 }
 

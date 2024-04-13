@@ -27,6 +27,7 @@ public:
     ~Electrode();
     static int nextPosition;
     QVector<int> emitSignal() const;
+    QVector<double> getWaveData(int durationInSeconds, int sampleRate) const;
     void treatmentAffect();
     void setIsActive(bool status);
     bool getIsActive();
