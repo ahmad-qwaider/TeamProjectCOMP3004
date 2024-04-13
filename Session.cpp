@@ -88,7 +88,7 @@ SessionData Session::generateSessionData(){
     int initialBaseAve = 0;
     int finalBaseAve = 0;
 
-    for(int i: intialBaselineLog){
+    for(int i: initialBaselineLog){
         initialBaseAve += i;
     }
     for(int j: finalBaselineLog){
@@ -144,7 +144,7 @@ void Session::calcBaseline(){
             qDebug() << "dominantFreq for electrode: " << currentElectrode << " is: " << Fd;
             currentRoundFdLog.append(Fd);
             if(round == 0){
-                intialBaselineLog.append(Fd);
+                initialBaselineLog.append(Fd);
             }else if (round == 4){
                 finalBaselineLog.append(Fd);
             }
