@@ -84,11 +84,11 @@ bool Session::isActive(){
 } // true if state is TREATING or ANALYZING
 
 SessionData Session::generateSessionData(){
-    SessionData data(dateAndTime, 0, 0);
+    SessionData data;
+    data.dateAndTime = dateAndTime;
     int initialBaseAve = 0;
     int finalBaseAve = 0;
-
-    for(int i: initialBaselineLog){
+    for(int i: intialBaselineLog){
         initialBaseAve += i;
     }
     for(int j: finalBaselineLog){
@@ -144,7 +144,7 @@ void Session::calcBaseline(){
             qDebug() << "dominantFreq for electrode: " << currentElectrode << " is: " << Fd;
             currentRoundFdLog.append(Fd);
             if(round == 0){
-                initialBaselineLog.append(Fd);
+                intialBaselineLog.append(Fd);
             }else if (round == 4){
                 finalBaselineLog.append(Fd);
             }
