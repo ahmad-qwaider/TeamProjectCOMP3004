@@ -14,12 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphLayout->addWidget(chartView);
     connectAllElectrodes();
     for (int i = 0; i < 21; ++i) {
-    electrodes.emplace_back(Electrode());
+    electrodes.append(Electrode());
     }
-    countdownTimer = new QTimer(this);
     batteryTimer = new QTimer(this);
     displayTimer = new QTimer(this);
-    connect(countdownTimer, &QTimer::timeout, this, &MainWindow::updateCountdown);
     connect(batteryTimer, &QTimer::timeout, this, &MainWindow::updateBatteryCapacity);
 
     dateTimeHolder = ui->dateTimeEdit->dateTime(); // set in the default value
@@ -94,8 +92,9 @@ void MainWindow::connectAllElectrodes(){
      contactLossTracker--;
      toggleRedLight(false);
 
-      if(contactLossTracker ==  0){
-         countdownTimer->start(1000);
+      if((contactLossTracker == 0) && !(currentSession==nullptr)){ // am i reconnect? is the session still there or has it been nuked
+         currentSession->getProgressTimer()->start();
+         currentSession->resumeTimers();
          toggleBlueLight(true);
       }
 
@@ -103,7 +102,7 @@ void MainWindow::connectAllElectrodes(){
      else{
       deactivateElectrode(button);
       contactLossTracker++;
-      countdownTimer->stop();
+      interuptionProtocol(); // trigger the exuction protocol timer
       toggleRedLight(true);
       toggleBlueLight(false);
      }
@@ -117,9 +116,10 @@ void MainWindow::on_powerButton_clicked(){
    batteryTimer->start(batteryTime);
    ui->Battery->setText(QString::number(batteryPercentage) + "%");
    if(isSessionRunning){
-      countdownTimer->start(1000);
-  }
-
+      ui->stackedFrames->setCurrentIndex(2);
+      currentSession->getProgressTimer()->start();
+      currentSession->resumeTimers();
+      }
   }
   else{
    ui->stackedFrames->setCurrentIndex(0); // empty screen
@@ -128,7 +128,8 @@ void MainWindow::on_powerButton_clicked(){
    toggleGreenLight(false);
    toggleRedLight(false);
    batteryTimer->stop();
-   countdownTimer->stop();
+   interuptionProtocol();
+
  }
 }
 
@@ -154,14 +155,20 @@ void MainWindow::deactivateElectrode(QPushButton *button){
 }
 
 void MainWindow::on_newSessionButton_clicked(){
-    ui->stackedFrames->setCurrentIndex(2);
-    isSessionRunning = true;
-    countdownTimer->start(1000);
-    batteryTimer->start(batteryTime/3);
-    ui->progressBar->setMaximum(countdownTime);
-    ui->progressBar->setValue(0);
-    toggleAllElectrodes();
+    if(!(batteryPercentage<40) && contactLossTracker == 0){ // need enough batter to start, low battery is at 10% so when it hit 10% we wipe, dont let them start incase it will hit it
+        intitializeSession(); // we bind a new therapy object to the current session option.
+        ui->stackedFrames->setCurrentIndex(2);
+        sessionDuration = currentSession->getSessionLength()/1000;  // convert ms to seconds
+        countdownTime = sessionDuration;
+        connect(currentSession->getProgressTimer(), &QTimer::timeout, this, &MainWindow::updateCountdown); // connect
+        currentSession->getProgressTimer()->start(1000); // start progress timer for countdown
+        currentSession->initializeEventTimers(); // start main event loop in session
+        batteryTimer->start(batteryTime/3);
+        ui->progressBar->setMaximum(countdownTime);
+        ui->progressBar->setValue(0);
+        toggleAllElectrodes();
 //    startWaveformDisplay();
+    }
 
 }
 
@@ -169,25 +176,34 @@ void MainWindow::on_newSessionButton_clicked(){
 
 void MainWindow::updateCountdown()
 {
-    countdownTime--;
+    if(!(batteryPercentage<40)){ // is battery low? is session paused? we need to fix this portion and have lowbatter occur at like 10 percent with warning..
+        isSessionRunning = true;
+        countdownTime--;
+        ui->progressBar->setValue(sessionDuration - countdownTime);
 
-    ui->progressBar->setValue(sessionDuration - countdownTime);
-    std::cout<<countdownTime<<endl;
-
-    // Convert seconds to minutes and seconds
-    int minutes = countdownTime / 60;
-    int seconds = countdownTime % 60;
+        // Convert seconds to minutes and seconds
+        int minutes = countdownTime / 60;
+        int seconds = countdownTime % 60;
 
 
-    ui->timeLabel->setText(QString("%1:%2").arg(minutes, 2, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')));
+        ui->timeLabel->setText(QString("%1:%2").arg(minutes, 2, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')));
 
-    if (countdownTime <= 0) {
-        countdownTimer->stop(); // Stop the timer
-        countdownTime = sessionDuration;
-        isSessionRunning = false;
-        sessionsData.emplace_back(dateTimeHolder, 100, 200);
-        appendToSessionLogConsole(); // append the new sesssion data to the session log console
+        if (countdownTime <= 0) {
+            currentSession->getProgressTimer()->stop(); // Stop the progress timer in session
+            currentSession->getProgressTimer()->disconnect(); // disconnect
+            currentSession->endSession(); // stop event timers inside session (they are disonnected inside)
+            //countdownTime = sessionDuration;
+            isSessionRunning = false;
+            sessionsData.append(currentSession->generateSessionData()); // append the new sesssion data to the session log console
+            currentSession = nullptr; // reset session
+            batteryTimer->start(batteryTime); //  battery back to nromal rate
+        }
+    }else{
+        // fornow it will isnta stop and return main menu we should probbaly add not saying crash due to low battery and then put it back to main
+        terminateSession();
         ui->progressBar->reset(); // To reset the progress bar
+        ui->stackedFrames->setCurrentIndex(1); // back to main when power low.
+
     }
 }
 
@@ -220,7 +236,9 @@ void MainWindow::toggleGreenLight(bool turnON){
 
 void MainWindow::on_TimeAndDateButton_clicked()
 {
-    ui->stackedFrames->setCurrentIndex(4);
+    if(isDeviceOn == true){
+        ui->stackedFrames->setCurrentIndex(4);
+    }
 }
 
 
@@ -234,7 +252,12 @@ void MainWindow::on_EnterTimeButton_clicked()
 
 void MainWindow::on_MenuButton_clicked()
 {
-  ui->stackedFrames->setCurrentIndex(1);
+  if(isDeviceOn == true){
+    if(ui->stackedFrames->currentIndex()==2){
+       terminateSession();
+    }
+    ui->stackedFrames->setCurrentIndex(1);
+  }
 }
 
 
@@ -251,20 +274,67 @@ void MainWindow::updateBatteryCapacity()
 
 void MainWindow::on_PlayButton_clicked()
 {
-    countdownTimer->start(1000);
-
+    // is it on? we dont wanna just click play for no reason
+    if((isDeviceOn==true) && (contactLossTracker==0)){
+        // check has this currentSession been initialized yet. ie was a session in progress?
+        if(!(currentSession==nullptr)){
+            // is the timer running? if not then start it
+            if(!(currentSession->getProgressTimer()->isActive())){
+                currentSession->getProgressTimer()->start();
+                currentSession->resumeTimers();
+            }
+        }
+    }
 }
 
 
 void MainWindow::on_PauseButton_clicked()
 {
-    countdownTimer->stop();
+    interuptionProtocol();
+
+}
+
+void MainWindow::interuptionProtocol(){
+    // check has this currentSession been initialized yet. ie was a session in progress?
+    if(!(currentSession==nullptr)){
+        currentSession->getProgressTimer()->stop();
+        currentSession->pauseTimers();
+
+        // singl shot QTimer via lamda expression to send a single signal after x ms. this will terminate if session not active in time. // keep at 5000ms for testing
+        // change to 5min for final draft.
+        QTimer::singleShot(5000, this, [=](){
+            if(!currentSession->isActive()){
+                terminateSession();
+            }
+        });
+
+    }
 }
 
 
 void MainWindow::on_sessionLogButton_clicked()
 {
     ui->stackedFrames->setCurrentIndex(3);
+}
+
+void MainWindow::intitializeSession(){
+    // CHANGE the 2 TIMES HERE TO ADJUST SESSION TIME WHEN TESTING
+    currentSession = new Session(dateTimeHolder, 5000, 1000, electrodes); // takes in datetime, baselinetime, treatment time per electrode, QVector of electrodes.
+
+}
+
+void MainWindow::terminateSession(){
+    qDebug() << "terminating session";
+    currentSession->getProgressTimer()->stop();
+    currentSession->endSession();
+    currentSession->getProgressTimer()->disconnect();
+    isSessionRunning = false;
+    currentSession = nullptr;
+    if(isDeviceOn == true){
+        ui->stackedFrames->setCurrentIndex(1);
+        batteryTimer->start(batteryTime); // battery back to normal rate
+    }
+
 }
 
 void MainWindow::appendToSessionLogConsole(){
@@ -281,4 +351,5 @@ void MainWindow::on_UploadToPCButton_clicked()
           ui->PCLogConsole->append(session.toString() + "\n");
       }
 }
+
 
