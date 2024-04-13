@@ -1,7 +1,8 @@
 #include "Session.h"
 
-Session::Session(QDateTime currentDateAndTime, int analyzingTime, int treatmentTime)
+Session::Session(QDateTime currentDateAndTime, int analyzingTime, int treatmentTime, QVector<Electrode> &electrodeList)
 {
+    electrodes = electrodeList;
     dateAndTime = currentDateAndTime;
     analyzeTime = analyzingTime;
     therapyTime = treatmentTime;
@@ -30,13 +31,11 @@ QTimer* Session::getProgressTimer(){
     return progressTimer;
 }
 
-void Session::initializeEventTimers(QVector<Electrode> &electrodes){
-    connect(electrodeTimer, &QTimer::timeout, [this, &electrodes]() {
-        Session::treatElectrode(electrodes);
-    });
-    connect(baselineTimer, &QTimer::timeout, [this, &electrodes]() {
-        Session::calcBaseline(electrodes);
-    });
+void Session::initializeEventTimers(){
+    connect(electrodeTimer, &QTimer::timeout, this, &Session::treatElectrode);
+
+    connect(baselineTimer, &QTimer::timeout, this, &Session::calcBaseline);
+    state = SessionState::ANALYZING;
     baselineTimer->start(analyzeTime/21);
 }
 
@@ -103,39 +102,46 @@ SessionData Session::generateSessionData(){
 }
 
 
-void Session::treatElectrode(QVector<Electrode> &electrodes){
-    qDebug() << "the dominant frequency at electrode " << currentElectrode << " location was: " << currentRoundFdLog.at(currentElectrode-1) << ". total offset this round is " << 5*round;
+void Session::treatElectrode(){
+    electrodeTimer->stop();
+    electrodeTimer->setInterval(therapyTime/16);
+    qDebug() << "the dominant frequency at electrode " << currentElectrode << " location was: " << currentRoundFdLog.at(currentElectrode-1) << ". total offset for round "<<round<< " is " << 5*round;
     qDebug() << "sending treatment pulse number: " << pulseCount << "to electrode " << currentElectrode<< " of stregnth: " << currentRoundFdLog.at(currentElectrode-1) + 5*round;
     pulseCount ++;
-    if(pulseCount == 15){ // we have emited 16th pulse
-        for(Electrode& electrode: electrodes){ // go to the proper electrode
+    if(pulseCount == 17){ // we have emited 16th pulse
+        pulseCount = 1;
+        for(Electrode &electrode: electrodes){ // go to the proper electrode
             if(currentElectrode == electrode.getPosition()){
                 electrode.treatmentAffect(); // make the treatment affect apparent so baseline changes
                 electrode.setIsActive(false); // turn location off
                 visitNextSite();
-                if(currentElectrode == 22){ // reached end of pulsing phase since 22 technically out of index. start at 0.
-                    visitInitialSite();
-                    currentRoundFdLog.clear();
-                    electrodeTimer->stop();
-                    state = SessionState::ANALYZING;
-                    baselineTimer->setInterval(therapyTime/21);
-                    baselineTimer->start();
-                }
+                break;
             }
         }
     }
+    if(currentElectrode == 22){ // reached end of pulsing phase since 22 technically out of index. start at 0.
+        visitInitialSite();
+        currentRoundFdLog.clear();
+        state = SessionState::ANALYZING;
+        baselineTimer->setInterval(analyzeTime/21);
+        baselineTimer->start();
+    }else{
+        electrodeTimer->start();
+        }
 }
 
-void Session::calcBaseline(QVector<Electrode> &electrodes){
-    qDebug() << "calculating baseline/dominantFreq for electrode: " << currentElectrode << " current waveform in round: " << round;
-    for(Electrode electrode: electrodes){
+void Session::calcBaseline(){
+    baselineTimer->stop();
+    baselineTimer->setInterval(analyzeTime/21);
+    qDebug() << "in baseline/dominantFreq phase for electrode: " << currentElectrode << " current waveform in round: " << round;
+    for(Electrode &electrode: electrodes){
         if(currentElectrode == electrode.getPosition()){
-            qDebug() << "observing electrode: " << currentElectrode << " current waveform in round: " << round;
+            qDebug() << "observing electrode: " << currentElectrode;
             QVector<int> waveInfo = electrode.emitSignal();
-            qDebug() << "calculating baseline/dominantFreq for electrode: " << currentElectrode << " current waveform in round: " << round;
+            qDebug() << "calculating baseline/dominantFreq for electrode: " << currentElectrode;
             int Fd = (waveInfo.at(0)*waveInfo.at(3)*waveInfo.at(3)+waveInfo.at(1)*waveInfo.at(4)*waveInfo.at(4)+waveInfo.at(2)*waveInfo.at(5)*waveInfo.at(5))/
                     (waveInfo.at(3)*waveInfo.at(3)+waveInfo.at(4)*waveInfo.at(4)+waveInfo.at(5)*waveInfo.at(5));
-            qDebug() << "dominantFreq for electrode: " << currentElectrode << " is: " << Fd << " Hz for waveform  observed in round: " << round;
+            qDebug() << "dominantFreq for electrode: " << currentElectrode << " is: " << Fd;
             currentRoundFdLog.append(Fd);
             if(round == 0){
                 intialBaselineLog.append(Fd);
@@ -149,13 +155,16 @@ void Session::calcBaseline(QVector<Electrode> &electrodes){
                 if(round == 5){
                     endSession();
                 }else{
-                    baselineTimer->stop();
                     state = SessionState::TREATING;
-                    baselineTimer->setInterval(analyzeTime/21);
-                    electrodeTimer->start(therapyTime/21);
+                    electrodeTimer->start(therapyTime/16);
                 }
             }
+            break;
         }
+
+    }
+    if(state == SessionState::ANALYZING){
+        baselineTimer->start();
     }
 
 }
