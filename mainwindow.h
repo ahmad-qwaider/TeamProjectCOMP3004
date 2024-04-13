@@ -6,8 +6,10 @@
 #include <QTimer>
 #include <QDateTime>
 #include <QtCharts>
+#include <QVector>
 #include "Electrode.h"
 #include "SessionData.h"
+#include "Session.h"
 #include <iostream>
 
 using namespace QtCharts;
@@ -40,25 +42,27 @@ private slots:
     void on_sessionLogButton_clicked();
 
     void on_UploadToPCButton_clicked();
+    void terminateSession();
+    void interuptionProtocol();
 
 private:
     Ui::MainWindow *ui;
-    QTimer *countdownTimer;
     QTimer *batteryTimer;
     QTimer *displayTimer;  // Timer for updating the waveform display
     bool isDeviceOn;
     bool isSessionRunning;
-    int sessionDuration = 2;
-    int countdownTime = sessionDuration; // Time in seconds (3 minutes)
+    int sessionDuration;
+    int countdownTime;
     int contactLossTracker = 0; // Tracks the number of contact lost electrodes
     int totalBatteryCapacity = 1500;
     int batteryPercentage = 100;
     int batteryTime = 1000;
     int batteryCapacityTracker = totalBatteryCapacity;
-    QDateTime dateTimeHolder; //holds the date and time entered by the use
+    QDateTime dateTimeHolder; //holds the date and time
     QChartView *chartView;  // chart view for the sin wave graph
-    std::vector<Electrode> electrodes;
-    std::vector<SessionData> sessionsData;
+    QVector<Electrode> electrodes;
+    QVector<SessionData> sessionsData;
+    Session* currentSession;
     void toggleAllElectrodes();
     void connectAllElectrodes();
     void activateElectrode(QPushButton *button);
@@ -69,6 +73,8 @@ private:
     void displayWaveform(int electrodeIndex);
     void startWaveformDisplay();
     void appendToSessionLogConsole();
+    void intitializeSession();
+
 
 };
 #endif // MAINWINDOW_H
