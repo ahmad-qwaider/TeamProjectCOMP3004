@@ -102,7 +102,9 @@ void MainWindow::connectAllElectrodes(){
      else{
       deactivateElectrode(button);
       contactLossTracker++;
-      interuptionProtocol(); // trigger the exuction protocol timer
+      if(killTimerSent== false){ // having issues with spamming connect and unconnect * edit i think this fixed it issue was multiple signal overlapping
+        interuptionProtocol(); // trigger the exuction protocol timer
+      }
       toggleRedLight(true);
       toggleBlueLight(false);
      }
@@ -115,21 +117,18 @@ void MainWindow::on_powerButton_clicked(){
    ui->stackedFrames->setCurrentIndex(1); // menu screen
    batteryTimer->start(batteryTime);
    ui->Battery->setText(QString::number(batteryPercentage) + "%");
-   if(isSessionRunning){
-      ui->stackedFrames->setCurrentIndex(2);
-      currentSession->getProgressTimer()->start();
-      currentSession->resumeTimers();
-      }
+
   }
   else{
+   if(currentSession!=nullptr){
+       terminateSession();
+   }
    ui->stackedFrames->setCurrentIndex(0); // empty screen
    ui->Battery->setText("");
    toggleBlueLight(false);
    toggleGreenLight(false);
    toggleRedLight(false);
    batteryTimer->stop();
-   interuptionProtocol();
-
  }
 }
 
@@ -188,7 +187,7 @@ void MainWindow::updateCountdown()
 
         ui->timeLabel->setText(QString("%1:%2").arg(minutes, 2, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')));
 
-        if (countdownTime <= 0) {
+        if (currentSession->getState() == SessionState::COMPLETE) {
             currentSession->getProgressTimer()->stop(); // Stop the progress timer in session
             currentSession->getProgressTimer()->disconnect(); // disconnect
             currentSession->endSession(); // stop event timers inside session (they are disonnected inside)
@@ -196,7 +195,9 @@ void MainWindow::updateCountdown()
             isSessionRunning = false;
             sessionsData.append(currentSession->generateSessionData()); // append the new sesssion data to the session log console
             currentSession = nullptr; // reset session
+            ui->stackedFrames->setCurrentIndex(1); // back to main menu
             batteryTimer->start(batteryTime); //  battery back to nromal rate
+
         }
     }else{
         // fornow it will isnta stop and return main menu we should probbaly add not saying crash due to low battery and then put it back to main
@@ -290,7 +291,9 @@ void MainWindow::on_PlayButton_clicked()
 
 void MainWindow::on_PauseButton_clicked()
 {
-    interuptionProtocol();
+    if(killTimerSent== false){
+        interuptionProtocol();
+    }
 
 }
 
@@ -299,13 +302,15 @@ void MainWindow::interuptionProtocol(){
     if(!(currentSession==nullptr)){
         currentSession->getProgressTimer()->stop();
         currentSession->pauseTimers();
-
+        killTimerSent = true;
         // singl shot QTimer via lamda expression to send a single signal after x ms. this will terminate if session not active in time. // keep at 5000ms for testing
         // change to 5min for final draft.
         QTimer::singleShot(5000, this, [=](){
-            if(!currentSession->isActive()){
+            if(currentSession!= nullptr && !currentSession->isActive()){
                 terminateSession();
+
             }
+            killTimerSent = false; // allow this signal to be sent again(prevents redundant calls)
         });
 
     }
