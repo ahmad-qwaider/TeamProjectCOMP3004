@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QRandomGenerator>
 #include <QVector>
+#include <QDebug>
 using namespace std;
 /* Purpose of Class: To act as electrode object
  * Data Members:
@@ -18,6 +19,7 @@ public:
     QVector<int> emitSignal() const;
     QVector<double> getWaveData(int durationInSeconds, int sampleRate) const;
     void treatmentAffect();
+    void treat(int Fd, int offSet);
     void setIsActive(bool status);
     bool getIsActive();
     int getPosition();
