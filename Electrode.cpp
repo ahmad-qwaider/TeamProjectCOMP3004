@@ -34,7 +34,7 @@ QVector<double> Electrode::getWaveData(int durationInSeconds, int sampleRate) co
 }
 
 QVector<int> Electrode::emitSignal() const{
-    cout << "electrode at position " << position << " emits "<< f1 << f2 << f3 << endl;
+    qDebug() << "electrode at position " << position << " emits "<< f1 << " " << f2 << " "<< f3;
     QVector<int> waveData;
     waveData.append(f1);
     waveData.append(f2);
@@ -43,6 +43,10 @@ QVector<int> Electrode::emitSignal() const{
     waveData.append(a2);
     waveData.append(a3);
     return waveData;
+}
+
+void Electrode::treat(int Fd, int offSet){
+    qDebug() << "Electrode: " << position << ", was treated with: " << Fd << " Hz + offset" << offSet << " Hz = " << offSet + Fd << " Hz.";
 }
 
 void Electrode::treatmentAffect(){
