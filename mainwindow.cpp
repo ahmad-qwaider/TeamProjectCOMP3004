@@ -173,8 +173,9 @@ void MainWindow::deactivateElectrode(QPushButton *button){
 
 void MainWindow::on_newSessionButton_clicked(){
     if(!(batteryPercentage<40) && contactLossTracker == 0){ // need enough batter to start, low battery is at 10% so when it hit 10% we wipe, dont let them start incase it will hit it
-        intitializeSession(); // we bind a new therapy object to the current session option.
+        toggleAllElectrodes(true);
         ui->stackedFrames->setCurrentIndex(2); // switch to session progress screen
+        intitializeSession(); // we bind a new therapy object to the current session option
         sessionDuration = currentSession->getSessionLength()/1000;  // convert ms to seconds
         countdownTime = sessionDuration;
         connect(currentSession->getProgressTimer(), &QTimer::timeout, this, &MainWindow::updateCountdown); // connect
@@ -184,11 +185,9 @@ void MainWindow::on_newSessionButton_clicked(){
         batteryTimer->start(batteryTime/3);
         ui->progressBar->setMaximum(countdownTime);
         ui->progressBar->setValue(0);
-        toggleAllElectrodes(true);
 
 //    startWaveformDisplay();
     }
-
 }
 
 
@@ -196,7 +195,6 @@ void MainWindow::on_newSessionButton_clicked(){
 void MainWindow::updateCountdown()
 {
     if(!(batteryPercentage<40)){ // is battery low? is session paused? we need to fix this portion and have lowbatter occur at like 10 percent with warning..
-        isSessionRunning = true;
         countdownTime--;
         ui->progressBar->setValue(sessionDuration - countdownTime);
 
@@ -207,7 +205,7 @@ void MainWindow::updateCountdown()
 
         ui->timeLabel->setText(QString("%1:%2").arg(minutes, 2, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')));
 
-        if (currentSession->getState() == SessionState::COMPLETE) {
+        if (currentSession->getState() == SessionState::COMPLETE && currentSession->getProgressTimer()->isActive()) {
             currentSession->getProgressTimer()->stop(); // Stop the progress timer in session
             currentSession->getProgressTimer()->disconnect(); // disconnect
             currentSession->endSession(); // stop event timers inside session (they are disonnected inside)
@@ -276,7 +274,6 @@ void MainWindow::on_EnterTimeButton_clicked()
 {
     showMainScreen();
     dateTimeHolder = ui->dateTimeEdit->dateTime();
- //   std::cout<<dateTimeHolder.toString().toStdString()<<endl;
 }
 
 
@@ -353,12 +350,20 @@ void MainWindow::on_sessionLogButton_clicked()
 void MainWindow::intitializeSession(){
     // CHANGE the 2 TIMES HERE TO ADJUST SESSION TIME WHEN TESTING
     currentSession = new Session(dateTimeHolder, 5000, 1000, electrodes); // takes in datetime, baselinetime, treatment time per electrode, QVector of electrodes.
+    isSessionRunning = true;
 
 }
 
 void MainWindow::terminateSession(){
+
+    if(!isSessionRunning){
+        return;
+    }
+
     qDebug() << "terminating session";
+    if(currentSession->getProgressTimer()->isActive()){
     currentSession->getProgressTimer()->stop();
+    }
     currentSession->endSession();
     currentSession->getProgressTimer()->disconnect();
     isSessionRunning = false;

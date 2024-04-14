@@ -45,8 +45,10 @@ void Session::initializeEventTimers(){
 }
 
 void Session::endSession(){
+    if(electrodeTimer-isActive()){
     electrodeTimer->stop();
     electrodeTimer->disconnect();
+    }
 } // stop and disconnect timers
 
 void Session::pauseTimers(){

@@ -59,7 +59,7 @@ private:
     int completedSessionsCount =  0;
     int totalBatteryCapacity = 1500;
     int batteryPercentage = 100;
-    int batteryTime = 100;
+    int batteryTime = 1000;
     int batteryCapacityTracker = totalBatteryCapacity;
     QDateTime dateTimeHolder; //holds the date and time
     QChartView *chartView;  // chart view for the sin wave graph
