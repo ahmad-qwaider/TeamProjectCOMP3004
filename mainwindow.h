@@ -42,8 +42,10 @@ private slots:
     void on_sessionLogButton_clicked();
 
     void on_UploadToPCButton_clicked();
-    void terminateSession();
+    void terminateSession(bool turnOfDevice);
     void interuptionProtocol();
+
+    void on_StopButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -59,7 +61,7 @@ private:
     int completedSessionsCount =  0;
     int totalBatteryCapacity = 1500;
     int batteryPercentage = 100;
-    int batteryTime = 1000;
+    int batteryTime = 100;
     int batteryCapacityTracker = totalBatteryCapacity;
     QDateTime dateTimeHolder; //holds the date and time
     QChartView *chartView;  // chart view for the sin wave graph

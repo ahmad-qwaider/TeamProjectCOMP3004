@@ -810,7 +810,7 @@ color: red;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="SaveButton">
+    <widget class="QPushButton" name="StopButton">
      <property name="geometry">
       <rect>
        <x>210</x>

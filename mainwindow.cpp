@@ -139,7 +139,7 @@ void MainWindow::on_powerButton_clicked(){
   }
   else{
    if(currentSession!=nullptr && isSessionRunning){
-       terminateSession();
+       terminateSession(false);
    }
    ui->stackedFrames->setCurrentIndex(0); // empty screen
    ui->Battery->setText("");
@@ -223,7 +223,7 @@ void MainWindow::updateCountdown()
         }
     }else{
         // fornow it will isnta stop and return main menu we should probbaly add not saying crash due to low battery and then put it back to main
-        terminateSession();
+        terminateSession(false);
         ui->progressBar->reset(); // To reset the progress bar
         showLowBatteryScreen();
 
@@ -280,8 +280,9 @@ void MainWindow::on_EnterTimeButton_clicked()
 void MainWindow::on_MenuButton_clicked()
 {
   if(isDeviceOn == true){
-    if(ui->stackedFrames->currentIndex()==2){
-       terminateSession();
+    if(isSessionRunning){
+        return;
+ //     terminateSession(); I DONT THINK WE SHOULD TERMINATE HERE
     }
     showMainScreen();
   }
@@ -333,7 +334,7 @@ void MainWindow::interuptionProtocol(){
         // change to 5min for final draft.
         QTimer::singleShot(5000, this, [=](){
             if(currentSession!= nullptr && !currentSession->isActive()){
-                terminateSession();
+                terminateSession(true);
             }
             killTimerSent = false; // allow this signal to be sent again(prevents redundant calls)
         });
@@ -354,7 +355,7 @@ void MainWindow::intitializeSession(){
 
 }
 
-void MainWindow::terminateSession(){
+void MainWindow::terminateSession(bool turnOfDevice){
 
     if(!isSessionRunning){
         return;
@@ -372,8 +373,12 @@ void MainWindow::terminateSession(){
     toggleAllElectrodes(false);
     toggleRedLight(false);
     if(isDeviceOn == true){
-        showMainScreen();
-        batteryTimer->start(batteryTime); // battery back to normal rate
+        if(turnOfDevice){
+        on_powerButton_clicked(); // turn of the device
+        }
+        else{
+         batteryTimer->start(batteryTime); // DONT FORGET TO REMOVE the spec mention when session termminates device should turn of  automaically
+        }
     }
 
 }
@@ -401,7 +406,17 @@ void MainWindow::showLowBatteryScreen() {
     QTimer::singleShot(5000, this, &MainWindow::showMainScreen); // Wait for 3 seconds before running returnToMainScreen
 }
 
-
 void MainWindow::showMainScreen() {
     ui->stackedFrames->setCurrentIndex(1); // Switch back to the main screen
 }
+
+void MainWindow::on_StopButton_clicked()
+{
+    if(isDeviceOn == true){
+      if(isSessionRunning){
+        terminateSession(false);
+      }
+      showMainScreen();
+    }
+}
+
