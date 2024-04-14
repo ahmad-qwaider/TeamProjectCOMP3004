@@ -52,12 +52,14 @@ private:
     bool isDeviceOn;
     bool isSessionRunning;
     bool killTimerSent = false;
+    bool blinkingImmitation = false;
     int sessionDuration;
     int countdownTime;
     int contactLossTracker = 0; // Tracks the number of contact lost electrodes
+    int completedSessionsCount =  0;
     int totalBatteryCapacity = 1500;
     int batteryPercentage = 100;
-    int batteryTime = 1000;
+    int batteryTime = 100;
     int batteryCapacityTracker = totalBatteryCapacity;
     QDateTime dateTimeHolder; //holds the date and time
     QChartView *chartView;  // chart view for the sin wave graph
@@ -71,10 +73,13 @@ private:
     void toggleRedLight(bool turnON);
     void toggleBlueLight(bool turnON);
     void toggleGreenLight(bool turnON);
+    void GreenlightBlinking();
     void displayWaveform(int electrodeIndex);
     void startWaveformDisplay();
     void appendToSessionLogConsole();
     void intitializeSession();
+    void showLowBatteryScreen();
+    void showMainScreen();
 
 
 };

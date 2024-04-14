@@ -25,6 +25,7 @@ class Session : public QObject{
         void visitNextSite(); // incremmnet electrode
         void visitInitialSite(); // set currElec to 1
         QTimer* getProgressTimer();
+        QTimer* getElectrodeTimer();
         void initializeEventTimers();
         void endSession(); // stop and disconnect timers
         void pauseTimers(); // toggle between treatment and analyzing timers

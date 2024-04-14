@@ -59,11 +59,19 @@ void MainWindow::displayWaveform(int electrodeIndex) {
 
 
 void MainWindow::toggleAllElectrodes(bool activate){
+
+    if(activate){
+       toggleBlueLight(true);
+    }
+    else{
+       contactLossTracker = 0; // cause all electrodes will be deactivated
+       toggleBlueLight(false);
+    }
+
     for (int i = 1; i < 22; ++i) {
         QString buttonName = QString("electrodeButton_%1").arg(i);
         QPushButton *button = MainWindow::findChild<QPushButton *>(buttonName);
-        int electrodeIndex = button->text().remove(0,1).toInt() - 1;
-        toggleBlueLight(true);
+        int electrodeIndex = button->text().remove(0,1).toInt() - 1;        
 
         if(button){
            if(activate){
@@ -110,12 +118,12 @@ void MainWindow::connectAllElectrodes(){
 
     }
      else{
+      toggleRedLight(true);
       deactivateElectrode(button);
       contactLossTracker++;
       if(killTimerSent== false){ // having issues with spamming connect and unconnect * edit i think this fixed it issue was multiple signal overlapping
         interuptionProtocol(); // trigger the exuction protocol timer
       }
-      toggleRedLight(true);
       toggleBlueLight(false);
      }
  }
@@ -124,7 +132,7 @@ void MainWindow::connectAllElectrodes(){
 void MainWindow::on_powerButton_clicked(){
   isDeviceOn = !isDeviceOn;
   if(isDeviceOn){
-   ui->stackedFrames->setCurrentIndex(1); // menu screen
+   showMainScreen(); // menu screen
    batteryTimer->start(batteryTime);
    ui->Battery->setText(QString::number(batteryPercentage) + "%");
 
@@ -166,10 +174,11 @@ void MainWindow::deactivateElectrode(QPushButton *button){
 void MainWindow::on_newSessionButton_clicked(){
     if(!(batteryPercentage<40) && contactLossTracker == 0){ // need enough batter to start, low battery is at 10% so when it hit 10% we wipe, dont let them start incase it will hit it
         intitializeSession(); // we bind a new therapy object to the current session option.
-        ui->stackedFrames->setCurrentIndex(2);
+        ui->stackedFrames->setCurrentIndex(2); // switch to session progress screen
         sessionDuration = currentSession->getSessionLength()/1000;  // convert ms to seconds
         countdownTime = sessionDuration;
         connect(currentSession->getProgressTimer(), &QTimer::timeout, this, &MainWindow::updateCountdown); // connect
+        connect(currentSession->getElectrodeTimer(), &QTimer::timeout, this, &MainWindow::GreenlightBlinking);
         currentSession->getProgressTimer()->start(1000); // start progress timer for countdown
         currentSession->initializeEventTimers(); // start main event loop in session
         batteryTimer->start(batteryTime/3);
@@ -207,7 +216,7 @@ void MainWindow::updateCountdown()
             sessionsData.append(currentSession->generateSessionData()); // append the new sesssion data to the session log console
             appendToSessionLogConsole(); // append the new sesssion data to the session log console
             currentSession = nullptr; // reset session
-            ui->stackedFrames->setCurrentIndex(1); // back to main menu
+            showMainScreen(); // back to main menu
             batteryTimer->start(batteryTime); //  battery back to nromal rate
             ui->timeLabel->setText(QString("00:29")); // so it starts at 00:29 for the next session
             toggleAllElectrodes(false);
@@ -218,7 +227,7 @@ void MainWindow::updateCountdown()
         // fornow it will isnta stop and return main menu we should probbaly add not saying crash due to low battery and then put it back to main
         terminateSession();
         ui->progressBar->reset(); // To reset the progress bar
-        ui->stackedFrames->setCurrentIndex(1); // back to main when power low.
+        showLowBatteryScreen();
 
     }
 }
@@ -243,11 +252,16 @@ void MainWindow::toggleBlueLight(bool turnON){
 
 void MainWindow::toggleGreenLight(bool turnON){
     if(turnON && isDeviceOn && contactLossTracker  == 0){
-        ui->greenLight->setStyleSheet("background-color: green");
+        ui->greenLight->setStyleSheet("background-color: rgb(47, 202, 9)");
    }
     else{
         ui->greenLight->setStyleSheet("background-color: rgb(245, 249, 236)");
     }
+}
+
+void MainWindow::GreenlightBlinking(){
+    blinkingImmitation =  !blinkingImmitation;
+    toggleGreenLight(blinkingImmitation);
 }
 
 void MainWindow::on_TimeAndDateButton_clicked()
@@ -260,7 +274,7 @@ void MainWindow::on_TimeAndDateButton_clicked()
 
 void MainWindow::on_EnterTimeButton_clicked()
 {
-    ui->stackedFrames->setCurrentIndex(1);
+    showMainScreen();
     dateTimeHolder = ui->dateTimeEdit->dateTime();
  //   std::cout<<dateTimeHolder.toString().toStdString()<<endl;
 }
@@ -272,7 +286,7 @@ void MainWindow::on_MenuButton_clicked()
     if(ui->stackedFrames->currentIndex()==2){
        terminateSession();
     }
-    ui->stackedFrames->setCurrentIndex(1);
+    showMainScreen();
   }
 }
 
@@ -323,7 +337,6 @@ void MainWindow::interuptionProtocol(){
         QTimer::singleShot(5000, this, [=](){
             if(currentSession!= nullptr && !currentSession->isActive()){
                 terminateSession();
-
             }
             killTimerSent = false; // allow this signal to be sent again(prevents redundant calls)
         });
@@ -352,26 +365,38 @@ void MainWindow::terminateSession(){
     currentSession = nullptr;
     ui->timeLabel->setText(QString("00:29")); // so it starts at 00:29 for the next session
     toggleAllElectrodes(false);
+    toggleRedLight(false);
     if(isDeviceOn == true){
-        ui->stackedFrames->setCurrentIndex(1);
+        showMainScreen();
         batteryTimer->start(batteryTime); // battery back to normal rate
     }
 
 }
 
 void MainWindow::appendToSessionLogConsole(){
-  ui->SessionLogConsole->append(QString("Date and Time: %1\n")
-                                .arg(dateTimeHolder.toString("yyyy-MM-dd hh:mm:ss")));
+  completedSessionsCount++;
+  ui->SessionLogConsole->append(QString("Session " + QString::number(completedSessionsCount) + ": \nDate and Time: %1\n")
+                                  .arg(dateTimeHolder.toString("yyyy-MM-dd hh:mm:ss")));
 }
 
 
 void MainWindow::on_UploadToPCButton_clicked()
 {
     ui->PCLogConsole->clear();
+    int sessionIndex  = 0;
 
       for (const auto& session : sessionsData) {
-          ui->PCLogConsole->append(session.toString() + "\n");
+          sessionIndex++;
+          ui->PCLogConsole->append(session.toString(sessionIndex) + "\n");
       }
 }
 
+void MainWindow::showLowBatteryScreen() {
+    ui->stackedFrames->setCurrentIndex(5); // Switch to low battery screen
+    QTimer::singleShot(5000, this, &MainWindow::showMainScreen); // Wait for 3 seconds before running returnToMainScreen
+}
 
+
+void MainWindow::showMainScreen() {
+    ui->stackedFrames->setCurrentIndex(1); // Switch back to the main screen
+}

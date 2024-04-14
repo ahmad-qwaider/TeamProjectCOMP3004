@@ -935,7 +935,7 @@ background-color: transparent;</string>
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="EmptyScreen"/>
      <widget class="QWidget" name="menuScreen">
@@ -1109,6 +1109,37 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
        </property>
        <property name="text">
         <string>ENTER</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="LowBatteryScreen">
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>20</y>
+         <width>151</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: red;</string>
+       </property>
+       <property name="text">
+        <string>LOW BATTERY!</string>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>

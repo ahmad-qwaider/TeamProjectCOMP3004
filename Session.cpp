@@ -31,6 +31,10 @@ QTimer* Session::getProgressTimer(){
     return progressTimer;
 }
 
+QTimer* Session::getElectrodeTimer(){
+    return electrodeTimer;
+}
+
 void Session::initializeEventTimers(){
     connect(electrodeTimer, &QTimer::timeout, this, &Session::treatElectrode);
 
