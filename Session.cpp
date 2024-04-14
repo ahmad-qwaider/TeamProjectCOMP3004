@@ -105,7 +105,6 @@ SessionData Session::generateSessionData(){
     return data;
 }
 
-
 void Session::treatElectrode(){
     electrodeTimer->stop();
     //electrodeTimer->setInterval(therapyTime/16);
