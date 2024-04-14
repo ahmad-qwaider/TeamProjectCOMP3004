@@ -51,6 +51,7 @@ private:
     QTimer *displayTimer;  // Timer for updating the waveform display
     bool isDeviceOn;
     bool isSessionRunning;
+    bool killTimerSent = false;
     int sessionDuration;
     int countdownTime;
     int contactLossTracker = 0; // Tracks the number of contact lost electrodes
