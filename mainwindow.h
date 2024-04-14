@@ -64,7 +64,7 @@ private:
     QVector<Electrode> electrodes;
     QVector<SessionData> sessionsData;
     Session* currentSession;
-    void toggleAllElectrodes();
+    void toggleAllElectrodes(bool activate);
     void connectAllElectrodes();
     void activateElectrode(QPushButton *button);
     void deactivateElectrode(QPushButton *button);

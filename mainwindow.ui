@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowOpacity">
+   <double>26.000000000000000</double>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: white;
 </string>
@@ -932,7 +935,7 @@ background-color: transparent;</string>
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="EmptyScreen"/>
      <widget class="QWidget" name="menuScreen">
@@ -1028,7 +1031,7 @@ background-color: transparent;</string>
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="text">
-        <string>3:00</string>
+        <string>00:29</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

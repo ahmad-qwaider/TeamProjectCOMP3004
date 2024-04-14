@@ -87,10 +87,10 @@ bool Session::isActive(){
 } // true if state is TREATING or ANALYZING
 
 SessionData Session::generateSessionData(){
-    SessionData data;
-    data.dateAndTime = dateAndTime;
+    SessionData data(dateAndTime, 0, 0);
     int initialBaseAve = 0;
     int finalBaseAve = 0;
+
     for(int i: initialBaselineLog){
         initialBaseAve += i;
     }

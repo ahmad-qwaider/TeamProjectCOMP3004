@@ -35,7 +35,7 @@ void MainWindow::startWaveformDisplay() {
         displayWaveform(electrodeIndex);
         electrodeIndex = (electrodeIndex + 1) % electrodes.size();
     });
-    displayTimer->start(1000);  // Update the waveform display every 500 ms
+    displayTimer->start(1000);  // Update the waveform display every 1 second
 }
 
 
@@ -58,7 +58,7 @@ void MainWindow::displayWaveform(int electrodeIndex) {
 
 
 
-void MainWindow::toggleAllElectrodes(){
+void MainWindow::toggleAllElectrodes(bool activate){
     for (int i = 1; i < 22; ++i) {
         QString buttonName = QString("electrodeButton_%1").arg(i);
         QPushButton *button = MainWindow::findChild<QPushButton *>(buttonName);
@@ -66,7 +66,12 @@ void MainWindow::toggleAllElectrodes(){
         toggleBlueLight(true);
 
         if(button){
+           if(activate){
            activateElectrode(button);
+           }
+           else{
+               deactivateElectrode(button);
+           }
            electrodes[electrodeIndex].switchIsActive();
         }
       }
@@ -83,15 +88,20 @@ void MainWindow::connectAllElectrodes(){
 
 // demonstrate the effect of contact lost by clicking any electrode in GUI
  void MainWindow::onMultipleButtonsClicked(){
+
+    if(!isSessionRunning){ // if no session is running you cannot connect or disconnect the electrodes
+        return;
+    }
+
      QPushButton *button = qobject_cast<QPushButton *>(sender());
      int electrodeIndex = button->text().remove(0,1).toInt() - 1;
      electrodes[electrodeIndex].switchIsActive();
      bool isElectrodeActive = electrodes[electrodeIndex].getIsActive();
+
      if(isElectrodeActive){
      activateElectrode(button);
      contactLossTracker--;
      toggleRedLight(false);
-
       if((contactLossTracker == 0) && !(currentSession==nullptr)){ // am i reconnect? is the session still there or has it been nuked
          currentSession->getProgressTimer()->start();
          currentSession->resumeTimers();
@@ -120,7 +130,7 @@ void MainWindow::on_powerButton_clicked(){
 
   }
   else{
-   if(currentSession!=nullptr){
+   if(currentSession!=nullptr && isSessionRunning){
        terminateSession();
    }
    ui->stackedFrames->setCurrentIndex(0); // empty screen
@@ -165,7 +175,8 @@ void MainWindow::on_newSessionButton_clicked(){
         batteryTimer->start(batteryTime/3);
         ui->progressBar->setMaximum(countdownTime);
         ui->progressBar->setValue(0);
-        toggleAllElectrodes();
+        toggleAllElectrodes(true);
+
 //    startWaveformDisplay();
     }
 
@@ -194,9 +205,13 @@ void MainWindow::updateCountdown()
             //countdownTime = sessionDuration;
             isSessionRunning = false;
             sessionsData.append(currentSession->generateSessionData()); // append the new sesssion data to the session log console
+            appendToSessionLogConsole(); // append the new sesssion data to the session log console
             currentSession = nullptr; // reset session
             ui->stackedFrames->setCurrentIndex(1); // back to main menu
             batteryTimer->start(batteryTime); //  battery back to nromal rate
+            ui->timeLabel->setText(QString("00:29")); // so it starts at 00:29 for the next session
+            toggleAllElectrodes(false);
+            toggleBlueLight(false);
 
         }
     }else{
@@ -299,7 +314,7 @@ void MainWindow::on_PauseButton_clicked()
 
 void MainWindow::interuptionProtocol(){
     // check has this currentSession been initialized yet. ie was a session in progress?
-    if(!(currentSession==nullptr)){
+    if(!(currentSession==nullptr) && currentSession->getProgressTimer()->isActive()){
         currentSession->getProgressTimer()->stop();
         currentSession->pauseTimers();
         killTimerSent = true;
@@ -335,6 +350,8 @@ void MainWindow::terminateSession(){
     currentSession->getProgressTimer()->disconnect();
     isSessionRunning = false;
     currentSession = nullptr;
+    ui->timeLabel->setText(QString("00:29")); // so it starts at 00:29 for the next session
+    toggleAllElectrodes(false);
     if(isDeviceOn == true){
         ui->stackedFrames->setCurrentIndex(1);
         batteryTimer->start(batteryTime); // battery back to normal rate
