@@ -13,6 +13,7 @@ enum class SessionState{
     TREATING,
     ANALYZING,
     PAUSED,
+    COMPLETE
 };
 
 class Session : public QObject{
@@ -30,6 +31,7 @@ class Session : public QObject{
         void resumeTimers();
         int getSessionLength();
         int getRound();
+        SessionState getState();
         bool isActive(); // true if state is TREATING or ANALYZING
         SessionData generateSessionData();
 
@@ -40,6 +42,7 @@ class Session : public QObject{
         int currentElectrode = 1;
         int round = 0;
         int pulseCount = 1;
+        int baselinePhase = 0;
         int analyzeTime;
         int therapyTime;
         int sessionLength;
@@ -48,14 +51,14 @@ class Session : public QObject{
         SessionState prePauseState;
 
         // Logs
-        QVector<int> intialBaselineLog;
+        QVector<int> initialBaselineLog;
         QVector<int> finalBaselineLog;
         QVector<int> currentRoundFdLog;
+        QVector<int> waveInfo;
 
         // Timers
         QTimer* progressTimer;
         QTimer* electrodeTimer;
-        QTimer* baselineTimer;
 
     private slots:
         void treatElectrode();
