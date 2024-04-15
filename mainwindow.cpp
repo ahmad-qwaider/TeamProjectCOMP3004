@@ -20,8 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
     displayTimer = new QTimer(this);
     connect(batteryTimer, &QTimer::timeout, this, &MainWindow::updateBatteryCapacity);
 
+    for (int i = 1; i <= 21; ++i) {
+        ui->electrodeSelector->addItem(QString("Electrode %1").arg(i));
+    }
+    connect(ui->electrodeSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(updateDisplayWave()));
+
     dateTimeHolder = ui->dateTimeEdit->dateTime(); // set in the default value
     ui->stackedFrames->setCurrentIndex(0);  // set device to an empty screen when device off
+    ui->stackedWidgetPC->setCurrentIndex(0); // show menu
 }
 
 MainWindow::~MainWindow()
@@ -29,14 +35,11 @@ MainWindow::~MainWindow()
   delete ui;
 }
 
-void MainWindow::startWaveformDisplay() {
-    connect(displayTimer, &QTimer::timeout, this, [this]() {
-        static int electrodeIndex = 0;  // Example to cycle through electrodes
-        displayWaveform(electrodeIndex);
-        electrodeIndex = (electrodeIndex + 1) % electrodes.size();
-    });
-    displayTimer->start(1000);  // Update the waveform display every 1 second
+void MainWindow::updateDisplayWave() {
+    int electrodeIndex = ui->electrodeSelector->currentIndex();
+    displayWaveform(electrodeIndex);
 }
+
 
 
 void MainWindow::displayWaveform(int electrodeIndex) {
@@ -44,10 +47,13 @@ void MainWindow::displayWaveform(int electrodeIndex) {
     Electrode &electrode = electrodes[electrodeIndex];
 
     QVector<double> waveform = electrode.getWaveData(1, 256);
+    cout<<electrodeIndex<<endl;
 
     QLineSeries *series = new QLineSeries();
     for (int i = 0; i < waveform.size(); ++i) {
         series->append(i / 256.0, waveform[i]);
+        std::cout << "Waveform data at index " << i << ": " << waveform[i] << std::endl;  // Print each data point
+
     }
 
     QChart *chart = chartView->chart();
@@ -185,8 +191,6 @@ void MainWindow::on_newSessionButton_clicked(){
         batteryTimer->start(batteryTime/3);
         ui->progressBar->setMaximum(countdownTime);
         ui->progressBar->setValue(0);
-
-//    startWaveformDisplay();
     }
 }
 
@@ -419,4 +423,27 @@ void MainWindow::on_StopButton_clicked()
       showMainScreen();
     }
 }
+
+void MainWindow::on_SessionLogButtonPC_clicked()
+{
+    ui->stackedWidgetPC->setCurrentIndex(1); // navigat to session log  screen
+}
+
+
+void MainWindow::on_GraphButtonPC_clicked()
+{
+   ui->stackedWidgetPC->setCurrentIndex(2); // navigate to graph screen
+}
+
+void MainWindow::on_BackButton_clicked()
+{
+    ui->stackedWidgetPC->setCurrentIndex(0); // Back to menu
+}
+
+void MainWindow::on_BackButton_2_clicked()
+{
+    ui->stackedWidgetPC->setCurrentIndex(0); // Back to menu
+}
+
+
 

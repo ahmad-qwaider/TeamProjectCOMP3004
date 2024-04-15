@@ -2,17 +2,37 @@
 
 int Electrode::nextPosition = 1;
 
-Electrode::Electrode()
-{
+Electrode::Electrode() {
     position = nextPosition++;
-    QRandomGenerator generator;
-    f1 = generator.bounded(1, 10);
-    f2 = generator.bounded(1, 10);
-    f3 = generator.bounded(1, 10);
-    a1 = generator.bounded(1, 5);
-    a2 = generator.bounded(1, 5);
-    a3 = generator.bounded(1, 5);
+    int bandChoice = QRandomGenerator::global()->bounded(0, 5); // Choose a band from 0 to 4
+
+    // Frequency bands
+    switch(bandChoice) {
+    case 0: // Delta (1-4 Hz)
+        f1 = QRandomGenerator::global()->bounded(1, 5);
+        break;
+    case 1: // Theta (4-8 Hz)
+        f1 = QRandomGenerator::global()->bounded(4, 9);
+        break;
+    case 2: // Alpha (8-12 Hz)
+        f1 = QRandomGenerator::global()->bounded(8, 13);
+        break;
+    case 3: // Beta (12-30 Hz)
+        f1 = QRandomGenerator::global()->bounded(12, 31);
+        break;
+    case 4: // Gamma (25-140 Hz)
+        f1 = QRandomGenerator::global()->bounded(25, 141);
+        break;
+    }
+
+    // Ensure variations are meaningful and do not overlap frequency bands
+    f2 = f1 + QRandomGenerator::global()->bounded(-1, 2); // slight variation
+    f3 = f1 + QRandomGenerator::global()->bounded(-1, 2); // slight variation
+    a1 = QRandomGenerator::global()->bounded(1, 5);
+    a2 = QRandomGenerator::global()->bounded(1, 5);
+    a3 = QRandomGenerator::global()->bounded(1, 5);
 }
+
 
 Electrode::~Electrode() {}
 

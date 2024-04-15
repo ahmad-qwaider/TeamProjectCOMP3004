@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1688</width>
-    <height>754</height>
+    <height>760</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -935,7 +935,7 @@ background-color: transparent;</string>
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="EmptyScreen"/>
      <widget class="QWidget" name="menuScreen">
@@ -1304,7 +1304,7 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
     <property name="styleSheet">
      <string notr="true">background-color: black;</string>
     </property>
-    <widget class="QTextBrowser" name="PCLogConsole">
+    <widget class="QStackedWidget" name="stackedWidgetPC">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1313,16 +1313,281 @@ font: 75 10pt &quot;DejaVu Sans&quot;;
        <height>261</height>
       </rect>
      </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
      <property name="styleSheet">
       <string notr="true">background-color: white;
 </string>
      </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
+     <property name="currentIndex">
+      <number>0</number>
      </property>
+     <widget class="QWidget" name="MenuScreen">
+      <widget class="QPushButton" name="SessionLogButtonPC">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>90</y>
+         <width>210</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+QPushButton {
+    background-color: rgb(249, 249, 249);
+    color: #333;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+}
+QPushButton:hover {
+    background-color: #e5e5e5;
+}
+QPushButton:pressed {
+    background-color: #d7d7d7;
+}
+QPushButton:checked {
+    background-color: #d0e4f1;
+    color: #000;
+    border: 1px solid #8ac;
+}</string>
+       </property>
+       <property name="text">
+        <string>SessionLog                  </string>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/images/Icons/icons8-log-48.png</normaloff>:/images/Icons/icons8-log-48.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>23</width>
+         <height>23</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="GraphButtonPC">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>140</y>
+         <width>210</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: rgb(249, 249, 249);
+    color: #333;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+}
+QPushButton:hover {
+    background-color: #e5e5e5;
+}
+QPushButton:pressed {
+    background-color: #d7d7d7;
+}
+QPushButton:checked {
+    background-color: #c3d69b;
+    color: #000;
+    border: 1px solid #8db37e;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Graph                         </string>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/images/Icons/noun-sine-6300871.svg</normaloff>:/images/Icons/noun-sine-6300871.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>23</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>30</y>
+         <width>241</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>17</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Choose An Option!</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="SessionLogScreen_2">
+      <widget class="QTextBrowser" name="PCLogConsole">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>40</y>
+         <width>451</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: white;
+border: 0px solid black; 
+</string>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BackButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"> border: none; background-color: transparent;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/images/Icons/noun-back-arrow-2690272.svg</normaloff>:/images/Icons/noun-back-arrow-2690272.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="GraphScreen">
+      <widget class="QWidget" name="verticalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>40</y>
+         <width>451</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="graphLayout"/>
+      </widget>
+      <widget class="QComboBox" name="electrodeSelector">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>10</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="BackButton_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>28</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"> border: none; background-color: transparent;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/images/Icons/noun-back-arrow-2690272.svg</normaloff>:/images/Icons/noun-back-arrow-2690272.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="widget_6" native="true">
@@ -1467,17 +1732,6 @@ border: 0px solid black;
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>321</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="graphLayout"/>
-   </widget>
    <zorder>label_2</zorder>
    <zorder>label_5</zorder>
    <zorder>electrodeButton_14</zorder>
@@ -1515,7 +1769,6 @@ border: 0px solid black;
    <zorder>line_6</zorder>
    <zorder>line_7</zorder>
    <zorder>widget_7</zorder>
-   <zorder>verticalLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

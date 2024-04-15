@@ -38,14 +38,19 @@ private slots:
     void on_MenuButton_clicked();
     void on_PlayButton_clicked();
     void on_PauseButton_clicked();
-
     void on_sessionLogButton_clicked();
-
     void on_UploadToPCButton_clicked();
     void terminateSession(bool turnOfDevice);
     void interuptionProtocol();
-
+    void updateDisplayWave();
     void on_StopButton_clicked();
+    void on_SessionLogButtonPC_clicked();
+    void on_GraphButtonPC_clicked();
+
+
+    void on_BackButton_2_clicked();
+
+    void on_BackButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -61,7 +66,7 @@ private:
     int completedSessionsCount =  0;
     int totalBatteryCapacity = 1500;
     int batteryPercentage = 100;
-    int batteryTime = 100;
+    int batteryTime = 1000;
     int batteryCapacityTracker = totalBatteryCapacity;
     QDateTime dateTimeHolder; //holds the date and time
     QChartView *chartView;  // chart view for the sin wave graph
@@ -77,7 +82,6 @@ private:
     void toggleGreenLight(bool turnON);
     void GreenlightBlinking();
     void displayWaveform(int electrodeIndex);
-    void startWaveformDisplay();
     void appendToSessionLogConsole();
     void intitializeSession();
     void showLowBatteryScreen();
