@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->electrodeSelector->addItem(QString("Electrode %1").arg(i));
     }
     connect(ui->electrodeSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(updateDisplayWave()));
-
+    updateDisplayWave();
     dateTimeHolder = ui->dateTimeEdit->dateTime(); // set in the default value
     ui->stackedFrames->setCurrentIndex(0);  // set device to an empty screen when device off
     ui->stackedWidgetPC->setCurrentIndex(0); // show menu
