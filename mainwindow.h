@@ -64,7 +64,9 @@ private:
     int countdownTime;
     int contactLossTracker = 0; // Tracks the number of contact lost electrodes
     int completedSessionsCount =  0;
-    int totalBatteryCapacity = 1500;
+    bool batteryWarningSent = false;
+    int totalBatteryCapacity = 320; // capacity is to be set at roughly 3*session length*3 + 10 this is because battery rate is x3 during session and we want 3 sessions
+    int noBattery = false;
     int batteryPercentage = 100;
     int batteryTime = 1000;
     int batteryCapacityTracker = totalBatteryCapacity;
