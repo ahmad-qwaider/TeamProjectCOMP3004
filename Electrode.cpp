@@ -54,7 +54,8 @@ QVector<double> Electrode::getWaveData(int durationInSeconds, int sampleRate) co
 }
 
 QVector<int> Electrode::emitSignal() const{
-    qDebug() << "electrode at position " << position << " emits "<< f1 << " " << f2 << " "<< f3;
+    qDebug() << "electrode at position " << position << " emits f1: "<< f1 << "  f2: " << f2 << " f3: "<< f3 << " a1: " << a1 << " a2: " << a2 << " a3: "<< a3;
+    // indexes 0-2 are the frequecnies. indecies 3-5 are amplitudes
     QVector<int> waveData;
     waveData.append(f1);
     waveData.append(f2);
