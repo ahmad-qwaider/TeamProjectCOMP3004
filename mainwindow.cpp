@@ -137,7 +137,7 @@ void MainWindow::connectAllElectrodes(){
 
 void MainWindow::on_powerButton_clicked(){
   isDeviceOn = !isDeviceOn;
-  if(isDeviceOn){
+  if(isDeviceOn && !noBattery){
    showMainScreen(); // menu screen
    batteryTimer->start(batteryTime);
    ui->Battery->setText(QString::number(batteryPercentage) + "%");
@@ -178,7 +178,7 @@ void MainWindow::deactivateElectrode(QPushButton *button){
 }
 
 void MainWindow::on_newSessionButton_clicked(){
-    if(!(batteryPercentage<40) && contactLossTracker == 0){ // need enough batter to start, low battery is at 10% so when it hit 10% we wipe, dont let them start incase it will hit it
+    if(!(batteryPercentage<10) && contactLossTracker == 0){ // need enough batter to start, low battery is at 10% so when it hit 10% we wipe, dont let them start incase it will hit it
         toggleAllElectrodes(true);
         ui->stackedFrames->setCurrentIndex(2); // switch to session progress screen
         intitializeSession(); // we bind a new therapy object to the current session option
@@ -198,7 +198,7 @@ void MainWindow::on_newSessionButton_clicked(){
 
 void MainWindow::updateCountdown()
 {
-    if(!(batteryPercentage<40)){ // is battery low? is session paused? we need to fix this portion and have lowbatter occur at like 10 percent with warning..
+    if(!(batteryPercentage<10)){ // battery low is 10% will end session automatically
         countdownTime--;
         ui->progressBar->setValue(sessionDuration - countdownTime);
 
@@ -228,8 +228,8 @@ void MainWindow::updateCountdown()
     }else{
         // fornow it will isnta stop and return main menu we should probbaly add not saying crash due to low battery and then put it back to main
         terminateSession(false);
-        ui->progressBar->reset(); // To reset the progress bar
-        showLowBatteryScreen();
+        ui->progressBar->reset();
+        batteryTimer->start(batteryTime);
 
     }
 }
@@ -286,7 +286,6 @@ void MainWindow::on_MenuButton_clicked()
   if(isDeviceOn == true){
     if(isSessionRunning){
         return;
- //     terminateSession(); I DONT THINK WE SHOULD TERMINATE HERE
     }
     showMainScreen();
   }
@@ -298,9 +297,14 @@ void MainWindow::updateBatteryCapacity()
     batteryCapacityTracker--;
     batteryPercentage = (batteryCapacityTracker * 100) / totalBatteryCapacity;
     ui->Battery->setText(QString::number(batteryPercentage) + "%");
-
+    if(batteryPercentage < 10 && !batteryWarningSent){ // only show warning if hasnt been shown already
+        batteryWarningSent = true;
+        showLowBatteryScreen();
+    }
     if (batteryCapacityTracker <= 0) {
         batteryTimer->stop(); // Stop the timer
+        noBattery = true;
+        on_powerButton_clicked();
     }
 }
 
@@ -380,11 +384,7 @@ void MainWindow::terminateSession(bool turnOfDevice){
         if(turnOfDevice){
         on_powerButton_clicked(); // turn of the device
         }
-        else{
-         batteryTimer->start(batteryTime); // DONT FORGET TO REMOVE the spec mention when session termminates device should turn of  automaically
-        }
     }
-
 }
 
 void MainWindow::appendToSessionLogConsole(){
@@ -444,6 +444,3 @@ void MainWindow::on_BackButton_2_clicked()
 {
     ui->stackedWidgetPC->setCurrentIndex(0); // Back to menu
 }
-
-
-
