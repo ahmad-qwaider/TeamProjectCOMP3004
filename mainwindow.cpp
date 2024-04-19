@@ -117,6 +117,7 @@ void MainWindow::connectAllElectrodes(){
      contactLossTracker--;
      toggleRedLight(false);
       if((contactLossTracker == 0) && !(currentSession==nullptr)){ // am i reconnect? is the session still there or has it been nuked
+         qDebug() << "beeping stopped!!";
          currentSession->getProgressTimer()->start();
          currentSession->resumeTimers();
          toggleBlueLight(true);
@@ -125,6 +126,7 @@ void MainWindow::connectAllElectrodes(){
     }
      else{
       toggleRedLight(true);
+      qDebug() << "beeping!!";
       deactivateElectrode(button);
       contactLossTracker++;
       if(killTimerSent== false){ // having issues with spamming connect and unconnect * edit i think this fixed it issue was multiple signal overlapping
