@@ -16,7 +16,7 @@ Youssif Ashmawy:
 - Parts of the GUI
 - Parts of the functions in the MainWindow class, electrode class
 
-Ridwhan Mohamed:
+Ridhwan Mohamed:
 - Use cases
 - Sequence diagram, UML class diagram, State diagram and tracebility matrix
 - Parts of the functions in the MainWindow class, electrode class and Session Class
