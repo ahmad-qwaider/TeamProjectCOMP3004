@@ -684,8 +684,8 @@ border: 1px solid black;
       <string/>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../Downloads/power-button-svgrepo-com.svg</normaloff>../Downloads/power-button-svgrepo-com.svg</iconset>
+      <iconset resource="images.qrc">
+       <normaloff>:/images/Icons/power-button-svgrepo-com.svg</normaloff>:/images/Icons/power-button-svgrepo-com.svg</iconset>
      </property>
     </widget>
     <widget class="QWidget" name="blueLight" native="true">
