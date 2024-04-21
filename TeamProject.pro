@@ -12,13 +12,11 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     Electrode.cpp \
-    PC.cpp \
     Session.cpp
 
 HEADERS += \
     mainwindow.h \
     Electrode.h \
-    PC.h \
     Session.h \
     SessionData.h
 
