@@ -26,4 +26,5 @@ Ridhwan Mohamed:
 
 Organization of the submission:
 
-I think everything is clear, the only thing that might be new is the icons folder which has all the icons in the GUI and the documentation folder which contains diagrams, video, matrix....  other than that, it's a normal QT project folder
+I think everything is clear, the only thing that might be new is the icons folder which has all the icons in the GUI and the documentation folder which contains diagrams, video, matrix....  other than that, it's a normal QT project folder.
+The test video is too large to be added to this git however we uploaded it to youtube as an unlisted video.************* https://youtu.be/1MVeveF6fG4 ***************** here is the link to the test video
