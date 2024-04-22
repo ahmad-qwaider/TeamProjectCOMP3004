@@ -47,12 +47,12 @@ void MainWindow::displayWaveform(int electrodeIndex) {
     Electrode &electrode = electrodes[electrodeIndex];
 
     QVector<double> waveform = electrode.getWaveData(1, 256);
-    cout<<electrodeIndex<<endl;
+    //cout<<electrodeIndex<<endl;
 
     QLineSeries *series = new QLineSeries();
     for (int i = 0; i < waveform.size(); ++i) {
         series->append(i / 256.0, waveform[i]);
-        std::cout << "Waveform data at index " << i << ": " << waveform[i] << std::endl;  // Print each data point
+        //std::cout << "Waveform data at index " << i << ": " << waveform[i] << std::endl;  // Print each data point
 
     }
 
